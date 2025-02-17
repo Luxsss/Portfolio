@@ -1,0 +1,50 @@
+@font-face {
+  font-family: 'MyFont';
+  src: url('/fonts/MyVariableFont-VF.ttf') format('truetype-variations');
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+.aboutContainer {
+  width: 80%;
+  margin: 0  auto 15vh auto;
+  padding: 20px;
+  text-align: left;
+}
+
+.aboutContainer h2 {
+  font-family: 'MyFont', sans-serif;
+  font-weight: 500;
+  font-size: 70px;
+  color: #4d4c4c;
+  position: relative;
+}
+
+.textContainer{
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin-bottom: 15vh;
+  color: rgb(102, 100, 100);
+}
+
+.textContent{
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 10vh;
+}
+
+.textContent p{
+  font-family: 'MyFont', sans-serif;
+  padding-left: 1vh;
+  font-weight: 300;
+  font-size: 40;
+  color: #666;
+  line-height: 1.7;
+  margin-top: 20px;
+}
+
+.textContent span{
+  opacity: 0.2;
+}

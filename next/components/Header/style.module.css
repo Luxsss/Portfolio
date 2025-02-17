@@ -1,0 +1,83 @@
+@font-face {
+  font-family: 'MyFont';
+  src: url('/fonts/MyVariableFont-VF.ttf') format('truetype-variations');
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+.headerContainer {
+  padding-top: 70px;
+  position: relative;
+  display: flex;
+  height: 100vh;
+  margin-bottom: 40vh;
+  overflow: hidden;
+  font-family: 'MyFont', sans-serif;
+}
+
+.imageContainer1 {
+  position: absolute;
+  top: calc(100vh - 80vh);
+  left: calc(100vw - 85vw);
+  width: 350px;
+  height: 350px;
+}
+
+.imageContainer2 {
+  position: absolute;
+  top: calc(100vh - 60vh);
+  left: calc(100vw - 65vw);
+  width: 250px;
+  height: 250px;
+}
+
+.firstContainer h1 {
+  font-weight: 500;
+  font-size: 80px;
+  color: #4d4c4c;
+  font-family: 'MyFont', sans-serif;
+}
+
+.firstText{
+  position: absolute;
+  top: calc(100vh - 80vh);
+  left: calc(100vw - 55vw);
+}
+
+.secondText{
+  position: absolute;
+  top: calc(100vh - 60vh);
+  left: calc(100vw - 40vw);
+}
+
+.sliderContainer {
+  position: absolute;
+  top: calc(100vh - 350px);
+}
+
+.slider {
+  position: relative;
+  white-space: nowrap;
+}
+
+.slider p {
+  position: relative;
+  margin: 0px;
+  color: rgb(255, 255, 255);
+  font-size: 240px;
+  font-weight: 500;
+  padding-right: 50px;
+  font-family: 'MyFont', sans-serif;
+}
+
+.slider p:nth-of-type(2) {
+  position: absolute;
+  left: 100%;
+  top: 0;
+}
+
+.slider p:nth-of-type(3) {
+  position: absolute;
+  left: 200%;
+  top: 0;
+}
