@@ -25,7 +25,6 @@ export default function AboutMe() {
         scrub: true,
         start: 'top 2%',
         end: `+=${window.innerHeight / 2.5}`,
-        markers:true,
       },
       opacity: 1,
       ease: 'none',
