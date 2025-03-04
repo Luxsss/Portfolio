@@ -5,17 +5,49 @@
   font-style: normal;
 }
 
-.projectsContainer {
-  width: 80%;
-  margin: 0  auto 15vh auto;
-  padding: 20px;
-  text-align: left;
+.projectsSection {
+  width: 100%;
+  margin: 0  auto 50vh auto;
+  overflow: hidden;
+  position: relative;
 }
 
-.projectsContainer h2 {
+.projectsSection h2 {
+  width: 80%;
+  margin: 0 auto 15vh auto;
   font-family: 'MyFont', sans-serif;
   font-weight: 500;
   font-size: 70px;
   color: #4d4c4c;
+  z-index: 10;
   position: relative;
+}
+
+.projectsGrid {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.projectCard {
+  background: #f5f5f5;
+  min-width: 100%; /* Largeur augmentée pour des cartes plus grandes */
+  min-height: 400px;
+  padding: 40px;    /* Augmentation de l'espace intérieur */
+  border-radius: 8px;
+  margin: 0 0px;
+  font-family: 'MyFont', sans-serif;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.projectCard h3 {
+  font-size: 50px; /* Taille de titre augmentée */
+  color: #4d4c4c;
+  margin-bottom: 1rem;
+}
+
+.projectCard p {
+  font-size: 24px; /* Texte plus grand pour une meilleure lisibilité */
+  color: #666;
+  line-height: 1.5;
 }

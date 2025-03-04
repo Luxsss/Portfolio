@@ -13,6 +13,7 @@
 }
 
 .aboutContainer h2 {
+  width: 100%;
   font-family: 'MyFont', sans-serif;
   font-weight: 500;
   font-size: 70px;
