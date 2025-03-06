@@ -39,17 +39,17 @@ export default function Header() {
     gsap.set(firstText.current, { xPercent: xPercent });
     gsap.set(secondText.current, { xPercent: xPercent });
     gsap.set(thirdText.current, { xPercent: xPercent });
-    xPercent += 0.05 * direction;
+    xPercent += 0.19 * direction;
     requestAnimationFrame(animate);
   };
 
   return (
     <div className={styles.headerContainer}>
       <div data-scroll data-scroll-speed="0.3" className={styles.imageContainer1}>
-        <Image src="/images/image2.jpg" fill={true} alt="Picture" />
+        <Image src="/images/image1.jpeg" fill={true} alt="Picture" />
       </div>
       <div data-scroll data-scroll-speed="0.1" className={styles.imageContainer2}>
-        <Image src="/images/image1.jpg" fill={true} alt="Picture" />
+        <Image src="/images/image2.jpg" fill={true} alt="Picture" />
       </div>
       <div className={styles.firstContainer}>
         <h1 className={styles.firstText}>Développeur</h1>

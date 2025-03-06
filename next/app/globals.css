@@ -13,3 +13,16 @@
 body{
   background-color: #e5e0da;
 }
+
+.olk {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 600vw;
+  z-index: -1;
+}
+
+.olk path {
+  stroke-width: 2rem;
+}

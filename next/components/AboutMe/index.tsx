@@ -30,6 +30,18 @@ export default function AboutMe() {
       ease: 'none',
       stagger: 0.1,
     });
+
+    gsap.to(titleRef.current, {
+      scrollTrigger: {
+        trigger: titleRef.current,
+        scrub: true,
+        start: 'top 80%',
+        end: 'top 20%',
+      },
+      '--border-scale': 1,
+      ease: 'power2.out',
+    });
+
   };
 
   const splitWords = (phrase: string) =>

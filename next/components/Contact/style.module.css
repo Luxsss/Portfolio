@@ -5,14 +5,14 @@
   font-style: normal;
 }
 
-.aboutContainer {
+.contactContainer {
   width: 80%;
   margin: 0  auto 10vh auto;
   padding: 20px;
   text-align: left;
 }
 
-.aboutContainer h2 {
+.contactContainer h2 {
   display: inline-block;
   font-family: 'MyFont', sans-serif;
   font-weight: 500;
@@ -22,7 +22,7 @@
   text-align: center;
 }
 
-.aboutContainer h2::after {
+.contactContainer h2::after {
   content: '';
   display: block;
   width: 100%;
@@ -34,33 +34,4 @@
   transform: scaleX(0);
   transform-origin: left;
   transform: scaleX(var(--border-scale, 0));
-}
-
-.textContainer{
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  margin-bottom: 15vh;
-  color: rgb(102, 100, 100);
-}
-
-.textContent{
-  width: 80%;
-  display: flex;
-  flex-wrap: wrap;
-  padding-left: 10vh;
-}
-
-.textContent p{
-  font-family: 'MyFont', sans-serif;
-  padding-left: 1vh;
-  font-weight: 400;
-  font-size: 40px;
-  color: #666;
-  line-height: 1;
-  margin-top: 20px;
-}
-
-.textContent span{
-  opacity: 0.2;
 }

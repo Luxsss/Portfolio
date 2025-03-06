@@ -10,7 +10,7 @@
   position: relative;
   display: flex;
   height: 100vh;
-  margin-bottom: 40vh;
+  margin-bottom: 35vh;
   overflow: hidden;
   font-family: 'MyFont', sans-serif;
 }
@@ -20,7 +20,7 @@
   top: calc(100vh - 80vh);
   left: calc(100vw - 85vw);
   width: 350px;
-  height: 350px;
+  height: 450px;
 }
 
 .imageContainer2 {
