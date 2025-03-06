@@ -31,7 +31,7 @@ export default function Contact() {
   return (
     <div>
       <div className={styles.contactContainer}>
-        <h2 ref={titleRef}>Contact</h2>
+        <h2 ref={titleRef}>Contactez-moi</h2>
       </div>
     </div>
   );
