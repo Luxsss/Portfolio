@@ -2,15 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @font-face {
   font-family: 'MyVariableFont';
   src: url('/fonts/MyVariableFont-VF.ttf') format('truetype-variations');
-  font-weight: 100 900; /* Définit la plage de poids */
+  font-weight: 100 900;
   font-style: normal;
 }
 
-body{
+body {
   background-color: #e5e0da;
 }
 
@@ -21,6 +20,8 @@ body{
   width: 100vw;
   height: 600vw;
   z-index: -1;
+  margin: 0;
+  padding: 0;
 }
 
 .olk path {

@@ -7,7 +7,7 @@
 
 .aboutContainer {
   width: 80%;
-  margin: 0  auto 10vh auto;
+  margin: 0 auto 10vh auto;
   padding: 20px;
   text-align: left;
 }
@@ -36,7 +36,7 @@
   transform: scaleX(var(--border-scale, 0));
 }
 
-.textContainer{
+.textContainer {
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -44,14 +44,14 @@
   color: rgb(102, 100, 100);
 }
 
-.textContent{
+.textContent {
   width: 80%;
   display: flex;
   flex-wrap: wrap;
   padding-left: 10vh;
 }
 
-.textContent p{
+.textContent p {
   font-family: 'MyFont', sans-serif;
   padding-left: 1vh;
   font-weight: 400;
@@ -59,8 +59,6 @@
   color: #666;
   line-height: 1;
   margin-top: 20px;
-}
-
-.textContent span{
   opacity: 0.2;
+  will-change: opacity;
 }

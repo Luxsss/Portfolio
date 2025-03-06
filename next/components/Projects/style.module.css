@@ -53,6 +53,7 @@
   position: absolute;
   top: 50%;
   left: 10%;
+  margin-bottom: 5vh;
   transform: translateY(-50%);
   padding-right: 10%;
   will-change: transform;
