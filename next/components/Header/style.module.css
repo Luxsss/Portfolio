@@ -85,30 +85,30 @@
 @media (max-width: 425px) {
   .imageContainer1 {
     position: absolute;
-    top: calc(100vh - 60vh);
-    left: calc(100vw - 85vw);
-    width: 200px;
-    height: 250px;
+    top: calc(100vh - 70vh);
+    left: calc(100vw - 95vw);
+    width: 250px;
+    height: 335px;
   }
 
   .imageContainer2 {
     position: absolute;
-    top: calc(100vh - 50vh);
-    left: calc(100vw - 65vw);
+    top: calc(100vh - 40vh);
+    left: calc(100vw - 45vw);
     width: 150px;
     height: 150px;
   }
 
   .firstContainer h1 {
     font-weight: 500;
-    font-size: 45px;
+    font-size: 60px;
     color: #4d4c4c;
     font-family: 'MyFont', sans-serif;
   }
 
   .firstText{
     position: absolute;
-    top: calc(100vh - 190vw);
+    top: calc(100vh - 170vw);
     left: calc(100vw - 90vw);
   }
 
@@ -120,7 +120,7 @@
 
   .sliderContainer {
     position: absolute;
-    top: calc(100vh - 275px);
+    top: calc(100vh - 300px);
   }
 
   .slider p {
