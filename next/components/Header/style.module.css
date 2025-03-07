@@ -82,7 +82,7 @@
   top: 0;
 }
 
-@media (max-width: 320px) {
+@media (max-width: 425px) {
   .imageContainer1 {
     position: absolute;
     top: calc(100vh - 70vh);
