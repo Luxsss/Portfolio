@@ -85,7 +85,7 @@
 @media (max-width: 425px) {
   .imageContainer1 {
     position: absolute;
-    top: calc(100vh - 70vh);
+    top: calc(100vh - 60vh);
     left: calc(100vw - 85vw);
     width: 200px;
     height: 250px;
@@ -120,7 +120,7 @@
 
   .sliderContainer {
     position: absolute;
-    top: calc(100vh - 250px);
+    top: calc(100vh - 275px);
   }
 
   .slider p {
