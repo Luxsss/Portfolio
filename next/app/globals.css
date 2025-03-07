@@ -15,8 +15,8 @@ body {
 
 .olk {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 1000px;
+  left: -150px;
   width: 100vw;
   height: 600vw;
   z-index: -1;
@@ -25,5 +25,5 @@ body {
 }
 
 .olk path {
-  stroke-width: 2rem;
+  stroke-width: 3rem;
 }

@@ -41,6 +41,13 @@ const projectsData = [
     technologies: "HTML, CSS, JavaScript",
     image: "/images/image2.jpg?height=300&width=500",
   },
+  {
+    id: 6,
+    title: "Site Vitrine",
+    description: "Site web pour une entreprise locale avec formulaire de contact",
+    technologies: "HTML, CSS, JavaScript",
+    image: "/images/image2.jpg?height=300&width=500",
+  },
 ]
 
 export default function Projects() {
