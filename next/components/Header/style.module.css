@@ -38,13 +38,13 @@
   font-family: 'MyFont', sans-serif;
 }
 
-.firstText{
+.firstText {
   position: absolute;
   top: calc(100vh - 80vh);
   left: calc(100vw - 55vw);
 }
 
-.secondText{
+.secondText {
   position: absolute;
   top: calc(100vh - 60vh);
   left: calc(100vw - 40vw);
@@ -62,7 +62,7 @@
 
 .slider p {
   position: relative;
-  margin: 0px;
+  margin: 0;
   color: rgb(255, 255, 255);
   font-size: 240px;
   font-weight: 500;
@@ -80,4 +80,37 @@
   position: absolute;
   left: 200%;
   top: 0;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .headerContainer {
+    height: auto;
+    margin-bottom: 20vh;
+    flex-direction: column;
+    overflow: visible;
+  }
+
+  /* Masquer ou réduire la taille des images pour alléger la mise en page */
+  .imageContainer1,
+  .imageContainer2 {
+    display: none;
+  }
+
+  .firstContainer h1 {
+    font-size: 40px;
+    text-align: center;
+    position: static;
+    margin-top: 20px;
+  }
+
+  .sliderContainer {
+    position: static;
+    margin: 20px 0;
+  }
+
+  .slider p {
+    font-size: 100px;
+    padding-right: 20px;
+  }
 }
