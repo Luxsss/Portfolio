@@ -87,8 +87,8 @@
     position: absolute;
     top: calc(100vh - 70vh);
     left: calc(100vw - 95vw);
-    width: 250px;
-    height: 335px;
+    width: 230px;
+    height: 315px;
   }
 
   .imageContainer2 {
@@ -108,7 +108,7 @@
 
   .firstText{
     position: absolute;
-    top: calc(100vh - 170vw);
+    top: calc(100vh - 175vw);
     left: calc(100vw - 90vw);
   }
 
@@ -120,7 +120,7 @@
 
   .sliderContainer {
     position: absolute;
-    top: calc(100vh - 300px);
+    top: calc(100vh - 275px);
   }
 
   .slider p {
