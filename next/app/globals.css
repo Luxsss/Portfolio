@@ -18,7 +18,7 @@ body {
   top: 1000px;
   left: -150px;
   width: 100vw;
-  height: 600vw;
+  height: 500vw;
   z-index: -1;
   margin: 0;
   padding: 0;
@@ -52,7 +52,7 @@ body {
   .second-svg {
     display: block;
   }
-  
+
   .olk {
     position: absolute;
     top: 1000px;

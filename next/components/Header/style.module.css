@@ -108,7 +108,7 @@
 
   .firstText{
     position: absolute;
-    top: calc(100vh - 175vw);
+    top: calc(100vh - 150vw);
     left: calc(100vw - 90vw);
   }
 
@@ -131,5 +131,40 @@
     font-weight: 500;
     padding-right: 50px;
     font-family: 'MyFont', sans-serif;
+  }
+}
+
+@media (max-width: 375px) {
+  .firstText{
+    position: absolute;
+    top: calc(100vh - 165vw);
+    left: calc(100vw - 95vw);
+  }
+
+  .secondText{
+    position: absolute;
+    top: calc(100vh - 80vh);
+    left: calc(100vw - 70vw);
+  }
+}
+@media (max-width: 320px) {
+
+  .firstContainer h1 {
+    font-weight: 500;
+    font-size: 50px;
+    color: #4d4c4c;
+    font-family: 'MyFont', sans-serif;
+  }
+
+  .firstText{
+    position: absolute;
+    top: calc(100vh - 195vw);
+    left: calc(100vw - 95vw);
+  }
+
+  .secondText{
+    position: absolute;
+    top: calc(100vh - 80vh);
+    left: calc(100vw - 70vw);
   }
 }
