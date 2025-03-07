@@ -1,20 +1,25 @@
-import React, { useEffect, useRef } from 'react';
-import Image from 'next/image';
-import styles from './style.module.css';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/all';
+"use client"
+
+import { useEffect, useRef } from "react"
+import Image from "next/image"
+import styles from "./style.module.css"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/all"
 
 export default function Header() {
-  const slider = useRef(null);
-  const firstText = useRef(null);
-  const secondText = useRef(null);
-  const thirdText = useRef(null);
+  const slider = useRef(null)
+  const firstText = useRef(null)
+  const secondText = useRef(null)
+  const thirdText = useRef(null)
 
-  let xPercent = 0;
-  let direction = -1;
+  let xPercent = 0
+  let direction = -1
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(ScrollTrigger)
+
+    // Responsive scroll animation
+    const scrollDistance = window.innerWidth < 768 ? "-150px" : "-300px"
 
     gsap.to(slider.current, {
       scrollTrigger: {
@@ -24,24 +29,33 @@ export default function Header() {
         scrub: 0.25,
         onUpdate: (e) => (direction = e.direction * -1),
       },
-      x: '-300px',
-    });
+      x: scrollDistance,
+    })
 
-    requestAnimationFrame(animate);
-  }, []);
+    requestAnimationFrame(animate)
+
+    // Cleanup function
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
+    }
+  }, [])
 
   const animate = () => {
     if (xPercent < -100) {
-      xPercent = 0;
+      xPercent = 0
     } else if (xPercent > 0) {
-      xPercent = -100;
+      xPercent = -100
     }
-    gsap.set(firstText.current, { xPercent: xPercent });
-    gsap.set(secondText.current, { xPercent: xPercent });
-    gsap.set(thirdText.current, { xPercent: xPercent });
-    xPercent += 0.19 * direction;
-    requestAnimationFrame(animate);
-  };
+    gsap.set(firstText.current, { xPercent: xPercent })
+    gsap.set(secondText.current, { xPercent: xPercent })
+    gsap.set(thirdText.current, { xPercent: xPercent })
+
+    // Adjust animation speed based on screen size
+    const speed = window.innerWidth < 768 ? 0.1 : 0.19
+    xPercent += speed * direction
+
+    requestAnimationFrame(animate)
+  }
 
   return (
     <div className={styles.headerContainer}>
@@ -63,5 +77,6 @@ export default function Header() {
         </div>
       </div>
     </div>
-  );
+  )
 }
+
