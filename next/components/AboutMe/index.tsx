@@ -5,7 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import gsap from 'gsap';
 
 const phrase =
-  "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio eum dignissimos similique alias, obcaecati animi temporibus eveniet nam tempora rerum, maiores cum maxime aliquam! Odio cumque reprehenderit fuga harum? Fugit. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vitae eum error, odio corporis hic cumque nulla facilis ullam veniam delectus sunt ipsum alias sit obcaecati labore fuga sed corrupti ipsam.";
+  "Je suis étudiant à la Web Académie d'Epitech, où je me spécialise en développement web. Chaque semaine, je travaille sur des projets concrets qui renforcent mes compétences. Ma passion grandit chaque jour pour le développement web me pousse à innover et à trouver des solutions créatives pour les utilisateurs. Je recherche des opportunités stimulantes pour mettre en valeur mes compétences techniques et mon esprit d'équipe. Je suis ouvert aux collaborations et je suis enthousiaste à l'idée d'apprendre en continu dans ce domaine en évolution rapide.";
 
 export default function AboutMe() {
   const wordsRef = useRef<HTMLParagraphElement[]>([]);

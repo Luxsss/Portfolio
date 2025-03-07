@@ -123,6 +123,16 @@
 }
 
 @media (max-width: 768px) {
+  .contactContainer {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 5vh;
+  }
+
+  .contactContainer h2 {
+    font-size: 40px;
+  }
+
   .formRow {
     flex-direction: column;
     gap: 0;
@@ -135,9 +145,7 @@
   .contactForm {
     padding: 20px;
   }
-}
 
-@media (max-width: 768px) {
   .projectsWrapper {
     position: relative;
     transform: none;
