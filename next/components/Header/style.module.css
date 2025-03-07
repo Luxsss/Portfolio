@@ -1,63 +1,58 @@
 @font-face {
-  font-family: "MyFont";
-  src: url("/fonts/MyVariableFont-VF.ttf") format("truetype-variations");
+  font-family: 'MyFont';
+  src: url('/fonts/MyVariableFont-VF.ttf') format('truetype-variations');
   font-weight: 100 900;
   font-style: normal;
 }
 
 .headerContainer {
-  padding-top: 5vh;
+  padding-top: 70px;
   position: relative;
   display: flex;
   height: 100vh;
   margin-bottom: 35vh;
   overflow: hidden;
-  font-family: "MyFont", sans-serif;
+  font-family: 'MyFont', sans-serif;
 }
 
 .imageContainer1 {
   position: absolute;
-  top: 20vh;
-  left: 15vw;
-  width: 30vw;
-  max-width: 350px;
-  height: 40vh;
-  max-height: 450px;
+  top: calc(100vh - 80vh);
+  left: calc(100vw - 85vw);
+  width: 350px;
+  height: 450px;
 }
 
 .imageContainer2 {
   position: absolute;
-  top: 40vh;
-  left: 35vw;
-  width: 25vw;
-  max-width: 250px;
-  height: 25vw;
-  max-height: 250px;
+  top: calc(100vh - 60vh);
+  left: calc(100vw - 65vw);
+  width: 250px;
+  height: 250px;
 }
 
 .firstContainer h1 {
   font-weight: 500;
-  font-size: clamp(2.5rem, 5vw, 5rem);
+  font-size: 80px;
   color: #4d4c4c;
-  font-family: "MyFont", sans-serif;
+  font-family: 'MyFont', sans-serif;
 }
 
-.firstText {
+.firstText{
   position: absolute;
-  top: 20vh;
-  left: 45vw;
+  top: calc(100vh - 80vh);
+  left: calc(100vw - 55vw);
 }
 
-.secondText {
+.secondText{
   position: absolute;
-  top: 40vh;
-  left: 60vw;
+  top: calc(100vh - 60vh);
+  left: calc(100vw - 40vw);
 }
 
 .sliderContainer {
   position: absolute;
-  bottom: 10vh;
-  width: 100%;
+  top: calc(100vh - 350px);
 }
 
 .slider {
@@ -69,10 +64,10 @@
   position: relative;
   margin: 0px;
   color: rgb(255, 255, 255);
-  font-size: clamp(4rem, 15vw, 15rem);
+  font-size: 240px;
   font-weight: 500;
   padding-right: 50px;
-  font-family: "MyFont", sans-serif;
+  font-family: 'MyFont', sans-serif;
 }
 
 .slider p:nth-of-type(2) {
@@ -87,82 +82,54 @@
   top: 0;
 }
 
-/* Media Queries */
-@media (max-width: 1024px) {
+@media (max-width: 320px) {
   .imageContainer1 {
-    left: 10vw;
-  }
-
-  .firstText {
-    left: 40vw;
-  }
-
-  .secondText {
-    left: 50vw;
-  }
-}
-
-@media (max-width: 768px) {
-  .headerContainer {
-    flex-direction: column;
-    margin-bottom: 20vh;
-  }
-
-  .imageContainer1 {
-    top: 15vh;
-    left: 10vw;
-    width: 40vw;
-    height: 30vh;
+    position: absolute;
+    top: calc(100vh - 70vh);
+    left: calc(100vw - 85vw);
+    width: 200px;
+    height: 250px;
   }
 
   .imageContainer2 {
-    top: 30vh;
-    left: 50vw;
-    width: 30vw;
-    height: 30vw;
+    position: absolute;
+    top: calc(100vh - 50vh);
+    left: calc(100vw - 65vw);
+    width: 150px;
+    height: 150px;
   }
 
-  .firstText {
-    top: 50vh;
-    left: 10vw;
+  .firstContainer h1 {
+    font-weight: 500;
+    font-size: 45px;
+    color: #4d4c4c;
+    font-family: 'MyFont', sans-serif;
   }
 
-  .secondText {
-    top: 60vh;
-    left: 30vw;
+  .firstText{
+    position: absolute;
+    top: calc(100vh - 190vw);
+    left: calc(100vw - 90vw);
+  }
+
+  .secondText{
+    position: absolute;
+    top: calc(100vh - 80vh);
+    left: calc(100vw - 70vw);
   }
 
   .sliderContainer {
-    bottom: 5vh;
-  }
-}
-
-@media (max-width: 480px) {
-  .headerContainer {
-    margin-bottom: 10vh;
+    position: absolute;
+    top: calc(100vh - 250px);
   }
 
-  .imageContainer1 {
-    top: 10vh;
-    left: 5vw;
-    width: 45vw;
-    height: 25vh;
-  }
-
-  .imageContainer2 {
-    top: 25vh;
-    left: 50vw;
-    width: 35vw;
-    height: 35vw;
-  }
-
-  .firstText {
-    top: 45vh;
-    left: 5vw;
-  }
-
-  .secondText {
-    top: 55vh;
-    left: 15vw;
+  .slider p {
+    position: relative;
+    margin: 0px;
+    color: rgb(255, 255, 255);
+    font-size: 185px;
+    font-weight: 500;
+    padding-right: 50px;
+    font-family: 'MyFont', sans-serif;
   }
 }

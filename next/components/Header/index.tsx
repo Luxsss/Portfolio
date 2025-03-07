@@ -1,25 +1,20 @@
-"use client"
-
-import { useEffect, useRef } from "react"
-import Image from "next/image"
-import styles from "./style.module.css"
-import gsap from "gsap"
-import { ScrollTrigger } from "gsap/all"
+import React, { useEffect, useRef } from 'react';
+import Image from 'next/image';
+import styles from './style.module.css';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/all';
 
 export default function Header() {
-  const slider = useRef(null)
-  const firstText = useRef(null)
-  const secondText = useRef(null)
-  const thirdText = useRef(null)
+  const slider = useRef(null);
+  const firstText = useRef(null);
+  const secondText = useRef(null);
+  const thirdText = useRef(null);
 
-  let xPercent = 0
-  let direction = -1
+  let xPercent = 0;
+  let direction = -1;
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger)
-
-    // Responsive scroll animation
-    const scrollDistance = window.innerWidth < 768 ? "-150px" : "-300px"
+    gsap.registerPlugin(ScrollTrigger);
 
     gsap.to(slider.current, {
       scrollTrigger: {
@@ -29,38 +24,29 @@ export default function Header() {
         scrub: 0.25,
         onUpdate: (e) => (direction = e.direction * -1),
       },
-      x: scrollDistance,
-    })
+      x: '-300px',
+    });
 
-    requestAnimationFrame(animate)
-
-    // Cleanup function
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
-    }
-  }, [])
+    requestAnimationFrame(animate);
+  }, []);
 
   const animate = () => {
     if (xPercent < -100) {
-      xPercent = 0
+      xPercent = 0;
     } else if (xPercent > 0) {
-      xPercent = -100
+      xPercent = -100;
     }
-    gsap.set(firstText.current, { xPercent: xPercent })
-    gsap.set(secondText.current, { xPercent: xPercent })
-    gsap.set(thirdText.current, { xPercent: xPercent })
-
-    // Adjust animation speed based on screen size
-    const speed = window.innerWidth < 768 ? 0.1 : 0.19
-    xPercent += speed * direction
-
-    requestAnimationFrame(animate)
-  }
+    gsap.set(firstText.current, { xPercent: xPercent });
+    gsap.set(secondText.current, { xPercent: xPercent });
+    gsap.set(thirdText.current, { xPercent: xPercent });
+    xPercent += 0.19 * direction;
+    requestAnimationFrame(animate);
+  };
 
   return (
     <div className={styles.headerContainer}>
       <div data-scroll data-scroll-speed="0.3" className={styles.imageContainer1}>
-        <Image src="/images/image1.jpeg" fill={true} alt="Picture" />
+        <Image src="/images/image1.jpg" fill={true} alt="Picture" />
       </div>
       <div data-scroll data-scroll-speed="0.1" className={styles.imageContainer2}>
         <Image src="/images/image2.jpg" fill={true} alt="Picture" />
@@ -77,6 +63,5 @@ export default function Header() {
         </div>
       </div>
     </div>
-  )
+  );
 }
-
