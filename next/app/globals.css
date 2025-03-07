@@ -28,7 +28,31 @@ body {
   stroke-width: 3rem;
 }
 
+.first-svg {
+  display: block;
+}
+
+.second-svg {
+  display: none;
+}
+
 @media (max-width: 425px) {
+  .first-svg {
+    display: none;
+  }
+  .second-svg {
+    display: block;
+  }
+}
+
+@media (max-width: 425px) {
+  .first-svg {
+    display: none;
+  }
+  .second-svg {
+    display: block;
+  }
+  
   .olk {
     position: absolute;
     top: 1000px;
