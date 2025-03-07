@@ -7,7 +7,7 @@
 
 .contactContainer {
   width: 80%;
-  margin: 0  auto 0 auto;
+  margin: 0  auto 10vh auto;
   padding: 20px;
   text-align: left;
 }
@@ -133,24 +133,16 @@
     font-size: 40px;
   }
 
+  .contactForm {
+    width: 90%;
+  }
+
   .formRow {
     flex-direction: column;
     gap: 0;
   }
 
-  .contactContainer h2 {
-    font-size: 50px;
-  }
-
   .contactForm {
     padding: 20px;
-  }
-
-  .projectsWrapper {
-    position: relative;
-    transform: none;
-    overflow-x: auto;
-    display: flex;
-    gap: 20px;
   }
 }

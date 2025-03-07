@@ -111,28 +111,28 @@ export default function Projects() {
   }, [])
 
   return (
-    <div ref={sectionRef} className={styles.projectsSection}>
-      <div className={styles.titleWrapper}>
-        <h2 ref={titleRef} className={styles.projectsTitle}>
-          Mes Projets
-        </h2>
+    <div>
+      <div className={styles.projectsContainer}>
+        <h2 ref={titleRef} >Mes Projets</h2>
       </div>
-      <div ref={horizontalRef} className={styles.horizontalContainer}>
-        <div ref={projectsRef} className={styles.projectsWrapper}>
-          {projectsData.map((project) => (
-            <div key={project.id} className={styles.projectCard}>
-              <div className={styles.projectImageContainer}>
-                <img src={project.image || "/placeholder.svg"} alt={project.title} className={styles.projectImage} />
-              </div>
-              <div className={styles.projectInfo}>
-                <h3>{project.title}</h3>
-                <p>{project.description}</p>
-                <div className={styles.technologies}>
-                  <span>{project.technologies}</span>
+      <div ref={sectionRef} className={styles.projectsSection}>
+        <div ref={horizontalRef} className={styles.horizontalContainer}>
+          <div ref={projectsRef} className={styles.projectsWrapper}>
+            {projectsData.map((project) => (
+              <div key={project.id} className={styles.projectCard}>
+                <div className={styles.projectImageContainer}>
+                  <img src={project.image || "/placeholder.svg"} alt={project.title} className={styles.projectImage} />
+                </div>
+                <div className={styles.projectInfo}>
+                  <h3>{project.title}</h3>
+                  <p>{project.description}</p>
+                  <div className={styles.technologies}>
+                    <span>{project.technologies}</span>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </div>
