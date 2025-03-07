@@ -27,3 +27,20 @@ body {
 .olk path {
   stroke-width: 3rem;
 }
+
+@media (max-width: 425px) {
+  .olk {
+    position: absolute;
+    top: 1000px;
+    left: 0px;
+    width: 100vw;
+    height: 950vw;
+    z-index: -1;
+    margin: 0;
+    padding: 0;
+  }
+
+  .olk path {
+    stroke-width: 3rem;
+  }
+}
