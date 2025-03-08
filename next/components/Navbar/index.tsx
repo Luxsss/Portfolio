@@ -1,3 +1,4 @@
+"use client"
 import React, {useRef, useLayoutEffect, useState} from 'react'
 import styles from './style.module.css';
 import gsap from 'gsap';

@@ -1,0 +1,37 @@
+.listLink {
+  font-size: 20px;
+}
+
+.footer {
+  color: #878787;
+  margin-bottom: 15px;
+}
+
+/* Media Queries for Mobile */
+@media screen and (max-width: 425px) {
+  .footer {
+    margin-bottom: 10px;
+    font-size: 12px;
+  }
+
+  .footerContainer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .footer {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .footer {
+    font-size: 11px;
+    margin-bottom: 8px;
+  }
+}

@@ -18,14 +18,14 @@ body {
   top: 1000px;
   left: -150px;
   width: 100vw;
-  height: 500vw;
+  height: 435vw;
   z-index: -1;
   margin: 0;
   padding: 0;
 }
 
 .olk path {
-  stroke-width: 3rem;
+  stroke-width: 7rem;
 }
 
 .first-svg {
@@ -36,7 +36,7 @@ body {
   display: none;
 }
 
-@media (max-width: 425px) {
+@media (max-width: 768px) {
   .first-svg {
     display: none;
   }
@@ -46,12 +46,6 @@ body {
 }
 
 @media (max-width: 425px) {
-  .first-svg {
-    display: none;
-  }
-  .second-svg {
-    display: block;
-  }
 
   .olk {
     position: absolute;
@@ -66,5 +60,18 @@ body {
 
   .olk path {
     stroke-width: 3rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .olk {
+    position: absolute;
+    top: 1000px;
+    left: 0px;
+    width: 100vw;
+    height: 1120vw;
+    z-index: -1;
+    margin: 0;
+    padding: 0;
   }
 }
