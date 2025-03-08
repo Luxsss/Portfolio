@@ -318,7 +318,7 @@
 @media (max-width: 320px) {
   .arrowContainer1 {
     position: absolute;
-    top: calc(100vh - 65vh);
+    top: calc(100vh - 70vh);
     left: calc(100vw - 95vw);
     width: 80px;
     height: 80px;
@@ -326,7 +326,7 @@
 
   .arrowContainer2 {
     position: absolute;
-    top: calc(100vh - 68vh);
+    top: calc(100vh - 70vh);
     left: calc(100vw - 40vw);
     width: 80px;
     height: 80px;

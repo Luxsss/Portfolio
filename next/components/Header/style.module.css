@@ -82,6 +82,22 @@
   top: 0;
 }
 
+@media (max-width: 768px) {
+  .firstContainer h1 {
+    font-size: 70px;
+  }
+
+  .firstText {
+    top: 15vh;
+    left: 10vw;
+  }
+
+  .secondText {
+    top: 25vh;
+    left: 25vw;
+  }
+}
+
 @media (max-width: 425px) {
   .imageContainer1 {
     position: absolute;
@@ -103,19 +119,16 @@
     font-weight: 500;
     font-size: 60px;
     color: #4d4c4c;
-    font-family: 'MyFont', sans-serif;
   }
 
-  .firstText{
-    position: absolute;
-    top: calc(100vh - 150vw);
-    left: calc(100vw - 90vw);
+  .firstText {
+    top: 12vh;
+    left: 5vw;
   }
 
-  .secondText{
-    position: absolute;
-    top: calc(100vh - 80vh);
-    left: calc(100vw - 70vw);
+  .secondText {
+    top: 22vh;
+    left: 35vw;
   }
 
   .sliderContainer {
@@ -130,41 +143,33 @@
     font-size: 185px;
     font-weight: 500;
     padding-right: 50px;
-    font-family: 'MyFont', sans-serif;
   }
 }
 
 @media (max-width: 375px) {
-  .firstText{
-    position: absolute;
-    top: calc(100vh - 165vw);
-    left: calc(100vw - 95vw);
+  .firstText {
+    top: 10vh;
+    left: 5vw;
   }
 
-  .secondText{
-    position: absolute;
-    top: calc(100vh - 80vh);
-    left: calc(100vw - 70vw);
+  .secondText {
+    top: 20vh;
+    left: 25vw;
   }
 }
+
 @media (max-width: 320px) {
-
   .firstContainer h1 {
-    font-weight: 500;
     font-size: 50px;
-    color: #4d4c4c;
-    font-family: 'MyFont', sans-serif;
   }
 
-  .firstText{
-    position: absolute;
-    top: calc(100vh - 195vw);
-    left: calc(100vw - 95vw);
+  .firstText {
+    top: 8vh;
+    left: 5vw;
   }
 
-  .secondText{
-    position: absolute;
-    top: calc(100vh - 80vh);
-    left: calc(100vw - 70vw);
+  .secondText {
+    top: 18vh;
+    left: 25vw;
   }
 }
