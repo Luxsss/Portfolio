@@ -63,7 +63,6 @@
   will-change: opacity;
 }
 
-/* --- Responsive --- */
 @media (max-width: 768px) {
   .aboutContainer {
     width: 90%;

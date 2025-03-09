@@ -19,23 +19,18 @@ export default function Home() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Détermine si l'affichage est mobile
     const isMobile = window.innerWidth <= 425;
     const svg = isMobile ? svgRefMobile.current : svgRefDesktop.current;
     const path = isMobile ? pathRefMobile.current : pathRefDesktop.current;
     if (!svg || !path) return;
 
-    // Indique que stroke-dashoffset sera animé
     path.style.willChange = "stroke-dashoffset";
 
-    // Récupère la longueur totale du tracé
     const pathLength = path.getTotalLength();
 
-    // Initialise le tracé pour créer l’effet "draw"
     path.style.strokeDasharray = `${pathLength}`;
     path.style.strokeDashoffset = `${pathLength}`;
 
-    // Animation avec GSAP et ScrollTrigger
     gsap.to(path, {
       strokeDashoffset: 0,
       ease: "none",

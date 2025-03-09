@@ -11,9 +11,7 @@ export default function Content() {
 
 const Section1 = () => {
   return (
-    <div
-      className={`flex flex-col md:flex-row md:justify-between items-center md:items-end gap-6 md:gap-0 ${styles.footerContainer}`}
-    >
+    <div className={`flex flex-col md:flex-row md:justify-between items-center md:items-end gap-6 md:gap-0 ${styles.footerContainer}`}>
       <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left">
         <div className="mb-4 sm:mb-0 sm:mx-5">
           <p className={styles.footer}>VERSION</p>

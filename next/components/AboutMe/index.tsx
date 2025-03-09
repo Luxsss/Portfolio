@@ -14,7 +14,6 @@ export default function AboutMe() {
   const textContentRef = useRef<HTMLDivElement>(null);
   const textContainerRef = useRef<HTMLDivElement>(null);
 
-  // Réinitialise le tableau pour éviter les doublons
   wordsRef.current = [];
 
   useEffect(() => {
@@ -23,7 +22,6 @@ export default function AboutMe() {
   }, []);
 
   const createAnimation = () => {
-    // Animation des mots (au lieu des lettres)
     gsap.to(wordsRef.current, {
       scrollTrigger: {
         trigger: titleRef.current,

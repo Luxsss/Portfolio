@@ -4,27 +4,26 @@ import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import styles from "./style.module.css"
 
-// Données de projets fictives pour la démonstration
 const projectsData = [
   {
     id: 1,
     title: "Puissance 4",
     description: "Jeu de stratégie classique basé sur une grille.",
-    technologies: "React, Next.js, GSAP",
+    technologies: "Javascript",
     image: "/images/puissance4.png?height=300&width=500",
   },
   {
     id: 2,
     title: "Bataille Navale",
     description: "Jeu classique de combat naval.",
-    technologies: "React, Node.js, MongoDB",
+    technologies: "Javascript",
     image: "/images/battleship.png?height=300&width=500",
   },
   {
     id: 3,
     title: "Spotify",
     description: "Service de streaming de musique.",
-    technologies: "TypeScript, D3.js, Firebase",
+    technologies: "React, Docker",
     image: "/images/spotify.png?height=300&width=500",
   },
   {
@@ -57,10 +56,8 @@ export default function Projects() {
   const projectsRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    // Enregistrer le plugin ScrollTrigger
     gsap.registerPlugin(ScrollTrigger)
 
-    // Animation du soulignement du titre
     gsap.to(titleRef.current, {
       scrollTrigger: {
         trigger: titleRef.current,
@@ -72,16 +69,14 @@ export default function Projects() {
       ease: "power2.out",
     })
 
-    // Calculer la largeur totale du conteneur de projets pour le scroll horizontal
     const calculateWidth = () => {
       if (horizontalRef.current && projectsRef.current) {
         const scrollWidth = projectsRef.current.scrollWidth
-        return -(scrollWidth - window.innerWidth + window.innerWidth * 0.01) // Ajustement pour la marge
+        return -(scrollWidth - window.innerWidth + window.innerWidth * 0.01)
       }
       return 0
     }
 
-    // Animation du défilement horizontal
     if (sectionRef.current && horizontalRef.current && projectsRef.current) {
       const horizontalScrollTween = gsap.to(projectsRef.current, {
         x: calculateWidth,
@@ -97,12 +92,10 @@ export default function Projects() {
         },
       })
 
-      // Recalculer lors du redimensionnement de la fenêtre
       window.addEventListener("resize", () => {
         ScrollTrigger.refresh()
       })
 
-      // Nettoyage
       return () => {
         horizontalScrollTween.kill()
         ScrollTrigger.getAll().forEach((trigger) => trigger.kill())

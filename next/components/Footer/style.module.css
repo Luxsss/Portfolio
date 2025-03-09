@@ -7,7 +7,6 @@
   margin-bottom: 15px;
 }
 
-/* Media Queries for Mobile */
 @media screen and (max-width: 425px) {
   .footer {
     margin-bottom: 10px;
