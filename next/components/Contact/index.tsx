@@ -111,7 +111,7 @@ export default function Contact() {
   }
 
   return (
-    <div className={styles.contactPage} onMouseMove={handleMouseMove}>
+    <div id="contact" className={styles.contactPage} onMouseMove={handleMouseMove}>
       <div className={styles.contactContainer}>
         <h2 ref={titleRef} className={styles.contactTitle}>
           DÉRANGEZ-MOI

@@ -45,7 +45,7 @@ export default function Header() {
   };
 
   return (
-    <div className={styles.headerContainer}>
+    <div id="home" className={styles.headerContainer}>
       <div data-scroll data-scroll-speed="0.3" className={styles.imageContainer1}>
         <Image src="/images/image1.jpg" fill={true} alt="Picture" />
       </div>

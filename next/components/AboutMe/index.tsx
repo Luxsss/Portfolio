@@ -59,7 +59,7 @@ export default function AboutMe() {
     ));
 
   return (
-    <div>
+    <div id="about">
       <div ref={aboutContainerRef} className={styles.aboutContainer}>
         <h2 ref={titleRef}>Qui suis-je ?</h2>
       </div>

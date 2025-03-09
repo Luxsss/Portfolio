@@ -7,6 +7,22 @@
   margin-bottom: 15px;
 }
 
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: #edebe9;
+  background-color: rgba(237, 235, 233, 0.05);
+  border-radius: 50%;
+}
+
+.socialLink:hover {
+  background-color: rgba(237, 235, 233, 0.15);
+  transform: translateY(-3px);
+}
+
 @media screen and (max-width: 425px) {
   .footer {
     margin-bottom: 10px;

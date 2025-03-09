@@ -104,7 +104,7 @@ export default function Projects() {
   }, [])
 
   return (
-    <div>
+    <div id="projects">
       <div className={styles.projectsContainer}>
         <h2 ref={titleRef} >Mes Projets</h2>
       </div>

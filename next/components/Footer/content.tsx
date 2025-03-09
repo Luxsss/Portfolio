@@ -26,22 +26,22 @@ const Section1 = () => {
         <p className={styles.footer}>SOCIALS</p>
         <ul className="flex justify-center md:justify-between items-center">
           <li className={"text-[#edebe9]"}>
-            <a href="https://github.com/Luxsss" target="_blank" rel="noopener noreferrer">
+            <a className={styles.socialLink} href="https://github.com/Luxsss" target="_blank" rel="noopener noreferrer">
               <i className="fa-brands fa-github fa-lg"></i>
             </a>
           </li>
           <li className={"ml-5 text-[#edebe9]"}>
-            <a href="https://www.linkedin.com/in/alexs-brun/" target="_blank" rel="noopener noreferrer">
+            <a className={styles.socialLink} href="https://www.linkedin.com/in/alexs-brun/" target="_blank" rel="noopener noreferrer">
               <i className="fa-brands fa-linkedin-in fa-lg"></i>
             </a>
           </li>
           <li className={"ml-5 text-[#edebe9]"}>
-            <a href="mailto:alexis1.brun@epitech.eu">
+            <a className={styles.socialLink} href="mailto:alexis1.brun@epitech.eu">
               <i className="fa-solid fa-paper-plane fa-lg"></i>
             </a>
           </li>
           <li className={"ml-5 text-[#edebe9]"}>
-            <a href="mailto:alexis1.brun@epitech.eu">
+            <a className={styles.socialLink} href="/download/CvAlexisBrunCom.pdf" download>
               CV
             </a>
           </li>
