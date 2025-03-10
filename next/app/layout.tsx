@@ -1,18 +1,19 @@
-import type React from "react"
-import type { Metadata } from "next"
-import Script from "next/script"
-import { Geist, Geist_Mono } from "next/font/google"
-import "./globals.css"
+// app/layout.tsx
+import type { ReactNode } from "react";
+import type { Metadata } from "next";
+import Script from "next/script";
+import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
-})
+});
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
-})
+});
 
 export const metadata: Metadata = {
   title: "Alexis Brun | Développeur Full Stack | Portfolio",
@@ -74,17 +75,23 @@ export const metadata: Metadata = {
   verification: {
     google: "Ci5l2MeTzLStUjiQFtogwr4rnDqX3K1SdZnb92d_7KY",
   },
-}
+};
 
+// Layout principal de l'application
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+}: {
+  children: ReactNode;
+}) {
   return (
     <html lang="fr">
       <head>
-        <Script src="https://kit.fontawesome.com/60a6745d4f.js" crossOrigin="anonymous" strategy="afterInteractive" />
+        <Script
+          src="https://kit.fontawesome.com/60a6745d4f.js"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
+
         <Script
           id="structured-data"
           type="application/ld+json"
@@ -104,7 +111,9 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        {children}
+      </body>
     </html>
-  )
+  );
 }
