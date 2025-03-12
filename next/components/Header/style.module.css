@@ -82,19 +82,65 @@
   top: 0;
 }
 
+@media (max-width: 1160px) {
+  .firstText {
+    top: 20vh;
+    left: 50vw;
+  }
+
+  .secondText {
+    top: 40vh;
+    left: 65vw;
+  }
+}
+
+@media (max-width: 1000px) {
+
+  .firstContainer h1 {
+    font-size: 70px;
+  }
+
+  .firstText {
+    top: 10vh;
+    left: 30vw;
+  }
+
+  .secondText {
+    top: 20vh;
+    left: 55vw;
+  }
+}
+
+@media (max-width: 879px) {
+
+  .firstContainer h1 {
+    font-size: 70px;
+  }
+
+  .firstText {
+    top: 10vh;
+    left: 10vw;
+  }
+
+  .secondText {
+    top: 20vh;
+    left: 60vw;
+  }
+}
+
 @media (max-width: 768px) {
   .firstContainer h1 {
     font-size: 70px;
   }
 
   .firstText {
-    top: 15vh;
+    top: 10vh;
     left: 10vw;
   }
 
   .secondText {
     top: 25vh;
-    left: 25vw;
+    left: 60vw;
   }
 }
 
