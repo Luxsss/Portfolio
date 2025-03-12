@@ -8,46 +8,47 @@ const projectsData = [
   {
     id: 1,
     title: "Previously On",
-    description: "Previously On est une application conçue pour les passionnés de films, séries et anime qui souhaitent organiser et suivre leur progression dans leurs visionnages. Cette plateforme permet de planifier les œuvres à regarder, d’enregistrer celles en cours, et de garder une trace précise des films visionnés, des saisons et épisodes terminés.",
+    description: "Application pour suivre et organiser vos visionnages de films, séries et anime.",
     technologies: "Next.js",
     image: "/images/projects/previouslyOn.webp?height=300&width=500",
   },
   {
     id: 2,
     title: "Jeu de Bataille Navale",
-    description: "Ce célèbre jeu de bataille navale. Ce projet propose une expérience stratégique où les joueurs placent leurs navires sur une grille et tentent de couler ceux de leur adversaire en devinant leurs positions. Le jeu peut être joué en solo contre une IA.",
+    description: "Jeu stratégique où vous placez des navires sur une grille, jouable en solo contre une IA.",
     technologies: "Javascript",
     image: "/images/projects/battleship.webp?height=300&width=500",
   },
   {
     id: 3,
     title: "My IRC",
-    description: "My_IRC est une application de messagerie instantanée inspirée des salons de discussion IRC classiques, conçue avec Socket.io pour la communication en temps réel et React pour une interface fluide et moderne. Ce projet vise à offrir une plateforme de discussion interactive, légère et performante, permettant aux utilisateurs de rejoindre des salons, d’échanger des messages et de profiter d’une expérience de chat optimisée.",
+    description: "Messagerie instantanée inspirée d'IRC, utilisant Socket.io et React pour une communication en temps réel.",
     technologies: "Socket.io, React",
     image: "/images/projects/my_irc.webp?height=300&width=500",
   },
   {
     id: 4,
     title: "Twitter",
-    description: "My_Twitter est une plateforme de microblogging inspirée de Twitter, développée en Symfony pour une gestion robuste du backend et une architecture sécurisée. Ce projet permet aux utilisateurs de publier des messages courts, d’interagir avec d’autres membres et de suivre des tendances en temps réel. Grâce à Symfony et à son écosystème performant, My_Twitter offre une expérience fluide et évolutive.",
+    description: "Plateforme de microblogging inspirée de Twitter, développée en Symfony pour publier des messages et suivre les tendances.",
     technologies: "Symfony, MySQL, Javascript, Tailwind",
     image: "/images/projects/twitter.webp?height=300&width=500",
   },
   {
     id: 5,
     title: "Puissance 4",
-    description: "Ce célèbre jeu de Puissance 4, développée en HTML, CSS et JavaScript. Ce projet permet aux joueurs de s’affronter en plaçant des jetons sur une grille, dans le but d’aligner quatre pions consécutifs avant leur adversaire. Avec une interface fluide et interactive.",
-    technologies: "Javascript, HTML, CSS ",
+    description: "Jeu classique de Puissance 4 en HTML, CSS et JavaScript, où l'objectif est d'aligner quatre jetons.",
+    technologies: "Javascript, HTML, CSS",
     image: "/images/projects/puissance4.webp?height=300&width=500",
   },
   {
     id: 6,
     title: "Site Responsive",
-    description: "Entraînez-vous avec un design résponsive",
+    description: "Exercice de design responsive pour s'adapter à tous les appareils.",
     technologies: "HTML, CSS",
     image: "/images/projects/responsive.png?height=300&width=500",
   },
-]
+];
+
 
 export default function Projects() {
   const sectionRef = useRef<HTMLDivElement>(null)
