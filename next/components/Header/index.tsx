@@ -47,10 +47,10 @@ export default function Header() {
   return (
     <div id="home" className={styles.headerContainer}>
       <div data-scroll data-scroll-speed="0.3" className={styles.imageContainer1}>
-        <Image src="/images/image1.jpg" fill={true} alt="Picture" />
+        <Image src="/images/image1.webp" fill={true} alt="Picture" />
       </div>
       <div data-scroll data-scroll-speed="0.1" className={styles.imageContainer2}>
-        <Image src="/images/image2.jpg" fill={true} alt="Picture" />
+        <Image src="/images/image2.webp" fill={true} alt="Picture" />
       </div>
       <div className={styles.firstContainer}>
         <h1 className={styles.firstText}>Développeur</h1>
@@ -58,9 +58,9 @@ export default function Header() {
       </div>
       <div className={styles.sliderContainer}>
         <div ref={slider} className={styles.slider}>
-          <span ref={firstText}>Alexis Brun -</span>
-          <span ref={secondText}>Alexis Brun -</span>
-          <span ref={thirdText}>Alexis Brun -</span>
+          <h1 ref={firstText}>Alexis Brun -</h1>
+          <h1 ref={secondText}>Alexis Brun -</h1>
+          <h1 ref={thirdText}>Alexis Brun -</h1>
         </div>
       </div>
     </div>
