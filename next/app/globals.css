@@ -46,7 +46,6 @@ body {
 }
 
 @media (max-width: 425px) {
-
   .olk {
     position: absolute;
     top: 1000px;

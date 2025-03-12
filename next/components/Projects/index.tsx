@@ -84,7 +84,8 @@ export default function Projects() {
         scrollTrigger: {
           trigger: horizontalRef.current,
           start: "top top",
-          end: () => `+=${projectsRef.current ? projectsRef.current.scrollWidth - window.innerWidth : 0}`,
+          end: () =>
+            `+=${projectsRef.current ? projectsRef.current.scrollWidth - window.innerWidth : 0}`,
           scrub: 1,
           pin: true,
           anticipatePin: 1,
@@ -92,13 +93,20 @@ export default function Projects() {
         },
       })
 
-      window.addEventListener("resize", () => {
-        ScrollTrigger.refresh()
-      })
+      // Ajout d'un debounce sur l'événement resize
+      let resizeTimeout: ReturnType<typeof setTimeout>
+      const handleResize = () => {
+        clearTimeout(resizeTimeout)
+        resizeTimeout = setTimeout(() => {
+          ScrollTrigger.refresh()
+        }, 200)
+      }
+      window.addEventListener("resize", handleResize)
 
       return () => {
         horizontalScrollTween.kill()
         ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
+        window.removeEventListener("resize", handleResize)
       }
     }
   }, [])
@@ -106,7 +114,7 @@ export default function Projects() {
   return (
     <div id="projects">
       <div className={styles.projectsContainer}>
-        <h2 ref={titleRef} >Mes Projets</h2>
+        <h2 ref={titleRef}>Mes Projets</h2>
       </div>
       <div ref={sectionRef} className={styles.projectsSection}>
         <div ref={horizontalRef} className={styles.horizontalContainer}>
@@ -114,7 +122,11 @@ export default function Projects() {
             {projectsData.map((project) => (
               <div key={project.id} className={styles.projectCard}>
                 <div className={styles.projectImageContainer}>
-                  <img src={project.image || "/placeholder.svg"} alt={project.title} className={styles.projectImage} />
+                  <img
+                    src={project.image || "/placeholder.svg"}
+                    alt={project.title}
+                    className={styles.projectImage}
+                  />
                 </div>
                 <div className={styles.projectInfo}>
                   <h3>{project.title}</h3>
