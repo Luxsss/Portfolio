@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.49.1",
     "gsap": "^3.12.7",
     "locomotive-scroll": "^5.0.0-beta.21",
     "next": "15.1.7",

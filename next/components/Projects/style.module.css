@@ -26,6 +26,7 @@
   color: #4d4c4c;
   position: relative;
   text-align: center;
+  will-change: transform; /* Ajouté pour améliorer l'accélération GPU */
 }
 
 .projectsContainer h2::after {

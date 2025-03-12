@@ -1,64 +1,48 @@
 "use client"
-import { useRef, useEffect } from "react"
+import { useRef, useEffect, useState } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import styles from "./style.module.css"
 
-const projectsData = [
-  {
-    id: 1,
-    title: "Previously On",
-    description: "Application pour suivre et organiser vos visionnages de films, séries et anime.",
-    technologies: "Next.js",
-    image: "/images/projects/previouslyOn.webp?height=300&width=500",
-  },
-  {
-    id: 2,
-    title: "Jeu de Bataille Navale",
-    description: "Jeu stratégique où vous placez des navires sur une grille, jouable en solo contre une IA.",
-    technologies: "Javascript",
-    image: "/images/projects/battleship.webp?height=300&width=500",
-  },
-  {
-    id: 3,
-    title: "My IRC",
-    description: "Messagerie instantanée inspirée d'IRC, utilisant Socket.io et React pour une communication en temps réel.",
-    technologies: "Socket.io, React",
-    image: "/images/projects/my_irc.webp?height=300&width=500",
-  },
-  {
-    id: 4,
-    title: "Twitter",
-    description: "Plateforme de microblogging inspirée de Twitter, développée en Symfony pour publier des messages et suivre les tendances.",
-    technologies: "Symfony, MySQL, Javascript, Tailwind",
-    image: "/images/projects/twitter.webp?height=300&width=500",
-  },
-  {
-    id: 5,
-    title: "Puissance 4",
-    description: "Jeu classique de Puissance 4 en HTML, CSS et JavaScript, où l'objectif est d'aligner quatre jetons.",
-    technologies: "Javascript, HTML, CSS",
-    image: "/images/projects/puissance4.webp?height=300&width=500",
-  },
-  {
-    id: 6,
-    title: "Site Responsive",
-    description: "Exercice de design responsive pour s'adapter à tous les appareils.",
-    technologies: "HTML, CSS",
-    image: "/images/projects/responsive.png?height=300&width=500",
-  },
-];
-
-
 export default function Projects() {
-  const sectionRef = useRef<HTMLDivElement>(null)
-  const titleRef = useRef<HTMLHeadingElement>(null)
-  const horizontalRef = useRef<HTMLDivElement>(null)
+  const sectionRef = useRef(null)
+  const titleRef = useRef(null)
+  const horizontalRef = useRef(null)
   const projectsRef = useRef<HTMLDivElement>(null)
 
+  interface Project {
+    id: number;
+    picture_url: string;
+    title: string;
+    description: string;
+    technologies: string;
+  }
+
+  const [projectsData, setProjectsData] = useState<Project[] | null>(null)
+
   useEffect(() => {
+    async function fetchProjects() {
+      try {
+        const res = await fetch("/api/projects")
+        const json = await res.json()
+        if (json.error) {
+          console.error(json.error)
+        } else {
+          setProjectsData(json.data)
+        }
+      } catch (err) {
+        console.error(err)
+      }
+    }
+    fetchProjects()
+  }, [])
+
+  useEffect(() => {
+    if (!projectsData) return
+
     gsap.registerPlugin(ScrollTrigger)
 
+    // Animation sur le titre avec accélération GPU activée (force3D)
     gsap.to(titleRef.current, {
       scrollTrigger: {
         trigger: titleRef.current,
@@ -68,49 +52,57 @@ export default function Projects() {
       },
       "--border-scale": 1,
       ease: "power2.out",
+      force3D: true,
     })
 
-    const calculateWidth = () => {
-      if (horizontalRef.current && projectsRef.current) {
+    // Fonction pour créer l'animation horizontale
+    const createHorizontalTween = () => {
+      if (sectionRef.current && horizontalRef.current && projectsRef.current) {
         const scrollWidth = projectsRef.current.scrollWidth
-        return -(scrollWidth - window.innerWidth + window.innerWidth * 0.01)
+        // Calcul de la distance avec un petit offset
+        const distance = -(scrollWidth - window.innerWidth + window.innerWidth * 0.01)
+        return gsap.to(projectsRef.current, {
+          x: distance,
+          ease: "none",
+          force3D: true,
+          scrollTrigger: {
+            trigger: horizontalRef.current,
+            start: "top top",
+            end: `+=${Math.abs(distance)}`,
+            scrub: 1,
+            pin: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+          },
+        })
       }
-      return 0
+      return null
     }
 
-    if (sectionRef.current && horizontalRef.current && projectsRef.current) {
-      const horizontalScrollTween = gsap.to(projectsRef.current, {
-        x: calculateWidth,
-        ease: "none",
-        scrollTrigger: {
-          trigger: horizontalRef.current,
-          start: "top top",
-          end: () =>
-            `+=${projectsRef.current ? projectsRef.current.scrollWidth - window.innerWidth : 0}`,
-          scrub: 1,
-          pin: true,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-        },
-      })
+    let horizontalTween = createHorizontalTween()
 
-      // Ajout d'un debounce sur l'événement resize
-      let resizeTimeout: ReturnType<typeof setTimeout>
-      const handleResize = () => {
-        clearTimeout(resizeTimeout)
-        resizeTimeout = setTimeout(() => {
-          ScrollTrigger.refresh()
-        }, 200)
-      }
-      window.addEventListener("resize", handleResize)
-
-      return () => {
-        horizontalScrollTween.kill()
-        ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
-        window.removeEventListener("resize", handleResize)
-      }
+    let resizeTimeout: any
+    const handleResize = () => {
+      clearTimeout(resizeTimeout)
+      resizeTimeout = setTimeout(() => {
+        // Au redimensionnement, on tue l'ancienne tween et on en crée une nouvelle avec les nouvelles dimensions
+        if (horizontalTween) {
+          horizontalTween.kill()
+        }
+        horizontalTween = createHorizontalTween()
+        ScrollTrigger.refresh()
+      }, 200)
     }
-  }, [])
+    window.addEventListener("resize", handleResize)
+
+    return () => {
+      if (horizontalTween) horizontalTween.kill()
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill())
+      window.removeEventListener("resize", handleResize)
+    }
+  }, [projectsData])
+
+  if (!projectsData) return <p>Loading...</p>
 
   return (
     <div id="projects">
@@ -124,7 +116,7 @@ export default function Projects() {
               <div key={project.id} className={styles.projectCard}>
                 <div className={styles.projectImageContainer}>
                   <img
-                    src={project.image || "/placeholder.svg"}
+                    src={project.picture_url}
                     alt={project.title}
                     className={styles.projectImage}
                   />
