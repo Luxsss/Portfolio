@@ -58,9 +58,9 @@ export default function Header() {
       </div>
       <div className={styles.sliderContainer}>
         <div ref={slider} className={styles.slider}>
-          <p ref={firstText}>Alexis Brun -</p>
-          <p ref={secondText}>Alexis Brun -</p>
-          <p ref={thirdText}>Alexis Brun -</p>
+          <span ref={firstText}>Alexis Brun -</span>
+          <span ref={secondText}>Alexis Brun -</span>
+          <span ref={thirdText}>Alexis Brun -</span>
         </div>
       </div>
     </div>

@@ -26,7 +26,7 @@ export default function AboutMe() {
       scrollTrigger: {
         trigger: titleRef.current,
         scrub: true,
-        start: 'top 8%',
+        start: 'top 10%',
         end: `+=${window.innerHeight / 2.5}`,
       },
       opacity: 1,
