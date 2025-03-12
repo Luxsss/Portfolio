@@ -77,7 +77,6 @@ export const metadata: Metadata = {
   },
 };
 
-// Layout principal de l'application
 export default function RootLayout({
   children,
 }: {

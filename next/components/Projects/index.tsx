@@ -41,64 +41,68 @@ export default function Projects() {
     if (!projectsData) return
 
     gsap.registerPlugin(ScrollTrigger)
+    // Désactiver le lag smoothing pour plus de réactivité
+    gsap.ticker.lagSmoothing(0)
 
-    // Animation sur le titre avec accélération GPU activée (force3D)
-    gsap.to(titleRef.current, {
-      scrollTrigger: {
-        trigger: titleRef.current,
-        scrub: true,
-        start: "top 80%",
-        end: "top 20%",
-      },
-      "--border-scale": 1,
-      ease: "power2.out",
-      force3D: true,
-    })
+    // Utilisation de gsap.context pour une meilleure gestion du cycle de vie
+    const ctx = gsap.context(() => {
+      // Animation du titre avec un scrub légèrement augmenté
+      gsap.to(titleRef.current, {
+        scrollTrigger: {
+          trigger: titleRef.current,
+          scrub: 1.5,
+          start: "top 80%",
+          end: "top 20%",
+        },
+        "--border-scale": 1,
+        ease: "power2.out",
+        force3D: true,
+      })
 
-    // Fonction pour créer l'animation horizontale
-    const createHorizontalTween = () => {
-      if (sectionRef.current && horizontalRef.current && projectsRef.current) {
-        const scrollWidth = projectsRef.current.scrollWidth
-        // Calcul de la distance avec un petit offset
-        const distance = -(scrollWidth - window.innerWidth + window.innerWidth * 0.01)
-        return gsap.to(projectsRef.current, {
-          x: distance,
-          ease: "none",
-          force3D: true,
-          scrollTrigger: {
-            trigger: horizontalRef.current,
-            start: "top top",
-            end: `+=${Math.abs(distance)}`,
-            scrub: 1,
-            pin: true,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-          },
-        })
-      }
-      return null
-    }
-
-    let horizontalTween = createHorizontalTween()
-
-    let resizeTimeout: any
-    const handleResize = () => {
-      clearTimeout(resizeTimeout)
-      resizeTimeout = setTimeout(() => {
-        // Au redimensionnement, on tue l'ancienne tween et on en crée une nouvelle avec les nouvelles dimensions
-        if (horizontalTween) {
-          horizontalTween.kill()
+      // Fonction pour créer la tween horizontale
+      const createHorizontalTween = () => {
+        if (horizontalRef.current && projectsRef.current) {
+          const scrollWidth = projectsRef.current.scrollWidth
+          const distance = -(scrollWidth - window.innerWidth + window.innerWidth * 0.01)
+          return gsap.to(projectsRef.current, {
+            x: distance,
+            ease: "none",
+            force3D: true,
+            scrollTrigger: {
+              trigger: horizontalRef.current,
+              start: "top top",
+              end: `+=${Math.abs(distance)}`,
+              scrub: 1.5,
+              pin: true,
+              anticipatePin: 1,
+              invalidateOnRefresh: true,
+            },
+          })
         }
-        horizontalTween = createHorizontalTween()
-        ScrollTrigger.refresh()
-      }, 200)
-    }
-    window.addEventListener("resize", handleResize)
+        return null
+      }
+
+      let horizontalTween = createHorizontalTween()
+
+      // Redéfinition de la tween lors du redimensionnement avec debounce
+      let resizeTimeout: ReturnType<typeof setTimeout>
+      const handleResize = () => {
+        clearTimeout(resizeTimeout)
+        resizeTimeout = setTimeout(() => {
+          if (horizontalTween) {
+            horizontalTween.kill()
+          }
+          horizontalTween = createHorizontalTween()
+          ScrollTrigger.refresh()
+        }, 200)
+      }
+      window.addEventListener("resize", handleResize)
+      return () => window.removeEventListener("resize", handleResize)
+    }, sectionRef)
 
     return () => {
-      if (horizontalTween) horizontalTween.kill()
+      ctx.revert()
       ScrollTrigger.getAll().forEach(trigger => trigger.kill())
-      window.removeEventListener("resize", handleResize)
     }
   }, [projectsData])
 
@@ -119,6 +123,7 @@ export default function Projects() {
                     src={project.picture_url}
                     alt={project.title}
                     className={styles.projectImage}
+                    loading="lazy"
                   />
                 </div>
                 <div className={styles.projectInfo}>
