@@ -1,0 +1,61 @@
+.ligne {
+  position: absolute;
+  top: 1000px;
+  left: -150px;
+  width: 100vw;
+  height: 435vw;
+  z-index: -1;
+  margin: 0;
+  padding: 0;
+}
+
+.ligne path {
+  stroke-width: 7rem;
+}
+
+.firstSvg {
+  display: block;
+}
+
+.secondSvg {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .firstSvg {
+    display: none;
+  }
+  .secondSvg {
+    display: block;
+  }
+}
+
+@media (max-width: 425px) {
+  .ligne {
+    position: absolute;
+    top: 1000px;
+    left: 0px;
+    width: 100vw;
+    height: 950vw;
+    z-index: -1;
+    margin: 0;
+    padding: 0;
+  }
+
+  .ligne path {
+    stroke-width: 6rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .ligne {
+    position: absolute;
+    top: 1000px;
+    left: 0px;
+    width: 100vw;
+    height: 1120vw;
+    z-index: -1;
+    margin: 0;
+    padding: 0;
+  }
+}
