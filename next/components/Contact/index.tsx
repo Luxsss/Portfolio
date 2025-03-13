@@ -11,6 +11,9 @@ export default function Contact() {
   const buttonRef = useRef<HTMLButtonElement>(null)
   const modalRef = useRef<HTMLDivElement>(null)
   const formRef = useRef<HTMLFormElement>(null)
+  const [name, setName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [message, setMessage] = useState<string>("");
 
   const arrow1Ref = useRef(null)
   const arrow2Ref = useRef(null)
@@ -104,11 +107,43 @@ export default function Contact() {
     }
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    console.log("Formulaire soumis")
-    closeModal()
-  }
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!message.trim() || !email.trim() || !name.trim()) {
+      console.error("Tous les champs doivent être remplis.");
+      return;
+    }
+
+    try {
+      const response = await fetch("https://submit-form.com/OTTnr3nxj", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          message: message,
+          _email: {
+            from: email,
+            subject: name,
+          },
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Erreur HTTP: ${response.status}`);
+      }
+
+      console.log("Formulaire soumis avec succès :", await response.json());
+
+      closeModal();
+    } catch (error) {
+      console.error("Erreur lors de l'envoi du formulaire :", error);
+    }
+  };
+
+
 
   return (
     <div id="contact" className={styles.contactPage} onMouseMove={handleMouseMove}>
@@ -143,20 +178,16 @@ export default function Contact() {
               <div className={styles.formRow}>
                 <div className={styles.formGroup}>
                   <label htmlFor="prenom">Prénom</label>
-                  <input type="text" id="prenom" name="prenom" required />
-                </div>
-                <div className={styles.formGroup}>
-                  <label htmlFor="nom">Nom</label>
-                  <input type="text" id="nom" name="nom" required />
+                  <input type="text" value={name} onChange={(e) => setName(e.target.value)} id="prenom" name="prenom" required />
                 </div>
               </div>
               <div className={styles.formGroup}>
                 <label htmlFor="email">Email</label>
-                <input type="email" id="email" name="email" required />
+                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} id="email" name="email" required />
               </div>
               <div className={styles.formGroup}>
                 <label htmlFor="message">Message</label>
-                <textarea id="message" name="message" rows={5} required></textarea>
+                <textarea id="message" value={message} onChange={(e) => setMessage(e.target.value)} name="message" rows={5} required></textarea>
               </div>
               <button type="submit" className={styles.submitButton}>
                 Envoyer
