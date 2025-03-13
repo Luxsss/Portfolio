@@ -125,6 +125,34 @@
   color: #555;
 }
 
+.projectButton {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background-color: #4d4c4c;
+  color: white;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.projectButton:hover {
+  background-color: #333;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.projectButton span {
+  display: inline-block;
+}
+
 @media (max-width: 768px) {
   .projectsContainer {
     width: 80%;
