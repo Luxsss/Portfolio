@@ -11,11 +11,11 @@ export default function Projects() {
   const projectsRef = useRef<HTMLDivElement>(null)
 
   interface Project {
-    id: number;
-    picture_url: string;
-    title: string;
-    description: string;
-    technologies: string;
+    id: number
+    picture_url: string
+    title: string
+    description: string
+    technologies: string
   }
 
   const [projectsData, setProjectsData] = useState<Project[] | null>(null)
@@ -37,52 +37,84 @@ export default function Projects() {
     fetchProjects()
   }, [])
 
+  // Fonction debounce pour limiter les appels durant le redimensionnement
+  function debounce(func: Function, delay: number) {
+    let timeoutId: any
+    return (...args: any) => {
+      if (timeoutId) clearTimeout(timeoutId)
+      timeoutId = setTimeout(() => {
+        func(...args)
+      }, delay)
+    }
+  }
+
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
 
-    gsap.to(titleRef.current, {
-      scrollTrigger: {
-        trigger: titleRef.current,
-        scrub: true,
-        start: "top 80%",
-        end: "top 20%",
+    // Utilisation de matchMedia pour appliquer un comportement différent sur desktop et mobile
+    const mm = ScrollTrigger.matchMedia({
+      // Desktop (à partir de 768px)
+      "(min-width: 768px)": () => {
+        // Animation de la bordure du titre
+        gsap.to(titleRef.current, {
+          scrollTrigger: {
+            trigger: titleRef.current,
+            scrub: true,
+            start: "top 80%",
+            end: "top 20%",
+          },
+          "--border-scale": 1,
+          ease: "power2.out",
+        })
+
+        const calculateWidth = () => {
+          if (horizontalRef.current && projectsRef.current) {
+            const scrollWidth = projectsRef.current.scrollWidth
+            return -(scrollWidth - window.innerWidth + window.innerWidth * 0.01)
+          }
+          return 0
+        }
+
+        const horizontalScrollTween = gsap.to(projectsRef.current, {
+          x: () => calculateWidth(),
+          ease: "none",
+          scrollTrigger: {
+            trigger: horizontalRef.current,
+            start: "top top",
+            end: () =>
+              `+=${projectsRef.current ? projectsRef.current.scrollWidth - window.innerWidth : 0}`,
+            scrub: 1,
+            pin: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+          },
+        })
+
+        const handleResize = debounce(() => {
+          ScrollTrigger.refresh()
+        }, 100)
+
+        window.addEventListener("resize", handleResize)
+
+        return () => {
+          horizontalScrollTween.kill()
+          ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
+          window.removeEventListener("resize", handleResize)
+        }
       },
-      "--border-scale": 1,
-      ease: "power2.out",
+      // Mobile : on désactive ou adapte le comportement horizontal
+      "(max-width: 767px)": () => {
+        // Pour mobile, on peut choisir de désactiver l'animation horizontale.
+        // On peut ajouter une animation alternative ici si besoin.
+        ScrollTrigger.refresh()
+        return () => {}
+      },
     })
 
-    const calculateWidth = () => {
-      if (horizontalRef.current && projectsRef.current) {
-        const scrollWidth = projectsRef.current.scrollWidth
-        return -(scrollWidth - window.innerWidth + window.innerWidth * 0.01)
-      }
-      return 0
-    }
-
-    if (sectionRef.current && horizontalRef.current && projectsRef.current) {
-      const horizontalScrollTween = gsap.to(projectsRef.current, {
-        x: calculateWidth,
-        ease: "none",
-        scrollTrigger: {
-          trigger: horizontalRef.current,
-          start: "top top",
-          end: () => `+=${projectsRef.current ? projectsRef.current.scrollWidth - window.innerWidth : 0}`,
-          scrub: 1,
-          pin: true,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-        },
-      })
-
-      window.addEventListener("resize", () => {
-        ScrollTrigger.refresh()
-      })
-
-      return () => {
-        horizontalScrollTween.kill()
-        ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
-      }
-    }
+    // Cleanup lors du démontage du composant
+    // return () => {
+    //   mm.revert()
+    // }
   }, [projectsData])
 
   if (!projectsData) return <p>Loading...</p>
