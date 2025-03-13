@@ -1,59 +1,40 @@
 "use client"
-import { useRef, useEffect } from "react"
+import { useRef, useEffect, useState } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import styles from "./style.module.css"
-
-const projectsData = [
-  {
-    id: 1,
-    title: "Puissance 4",
-    description: "Jeu de stratégie classique basé sur une grille.",
-    technologies: "Javascript",
-    image: "/images/puissance4.png?height=300&width=500",
-  },
-  {
-    id: 2,
-    title: "Bataille Navale",
-    description: "Jeu classique de combat naval.",
-    technologies: "Javascript",
-    image: "/images/battleship.png?height=300&width=500",
-  },
-  {
-    id: 3,
-    title: "Spotify",
-    description: "Service de streaming de musique.",
-    technologies: "React, Docker",
-    image: "/images/spotify.png?height=300&width=500",
-  },
-  {
-    id: 4,
-    title: "Twitter",
-    description: "Plateforme de partage.",
-    technologies: "Symfony, MySQL, Javascript, Tailwind",
-    image: "/images/twitter.png?height=300&width=500",
-  },
-  {
-    id: 5,
-    title: "MyCinema",
-    description: "Trouvez votre prochain film !",
-    technologies: "HTML, CSS, PHP",
-    image: "/images/myCinema.png?height=300&width=500",
-  },
-  {
-    id: 6,
-    title: "Site Responsive",
-    description: "Entraînez-vous avec un design résponsive",
-    technologies: "HTML, CSS",
-    image: "/images/responsive.png?height=300&width=500",
-  },
-]
 
 export default function Projects() {
   const sectionRef = useRef<HTMLDivElement>(null)
   const titleRef = useRef<HTMLHeadingElement>(null)
   const horizontalRef = useRef<HTMLDivElement>(null)
   const projectsRef = useRef<HTMLDivElement>(null)
+  const [projectsData, setProjectsData] = useState<Project[] | null>(null)
+
+  interface Project {
+    id: number;
+    picture_url: string;
+    title: string;
+    description: string;
+    technologies: string;
+  }
+
+  useEffect(() => {
+    async function fetchProjects() {
+      try {
+        const res = await fetch("/api/projects")
+        const json = await res.json()
+        if (json.error) {
+          console.error(json.error)
+        } else {
+          setProjectsData(json.data)
+        }
+      } catch (err) {
+        console.error(err)
+      }
+    }
+    fetchProjects()
+  }, [])
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
@@ -101,7 +82,9 @@ export default function Projects() {
         ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
       }
     }
-  }, [])
+  }, [projectsData])
+
+  if(!projectsData) return <p>Loading ...</p>
 
   return (
     <div id="projects">
@@ -114,7 +97,7 @@ export default function Projects() {
             {projectsData.map((project) => (
               <div key={project.id} className={styles.projectCard}>
                 <div className={styles.projectImageContainer}>
-                  <img src={project.image || "/placeholder.svg"} alt={project.title} className={styles.projectImage} />
+                  <img src={project.picture_url || "/placeholder.svg"} alt={project.title} className={styles.projectImage} />
                 </div>
                 <div className={styles.projectInfo}>
                   <h3>{project.title}</h3>

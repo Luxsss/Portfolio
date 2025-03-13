@@ -125,9 +125,7 @@
   color: #555;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
-
 
   .projectsContainer {
     width: 80%;
