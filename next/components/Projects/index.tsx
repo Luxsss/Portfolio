@@ -41,16 +41,13 @@ export default function Projects() {
     if (!projectsData) return
 
     gsap.registerPlugin(ScrollTrigger)
-    // Désactiver le lag smoothing pour plus de réactivité
     gsap.ticker.lagSmoothing(0)
 
-    // Utilisation de gsap.context pour une meilleure gestion du cycle de vie
     const ctx = gsap.context(() => {
-      // Animation du titre avec un scrub légèrement augmenté
       gsap.to(titleRef.current, {
         scrollTrigger: {
           trigger: titleRef.current,
-          scrub: 1.5,
+          scrub: true,
           start: "top 80%",
           end: "top 20%",
         },
@@ -59,7 +56,6 @@ export default function Projects() {
         force3D: true,
       })
 
-      // Fonction pour créer la tween horizontale
       const createHorizontalTween = () => {
         if (horizontalRef.current && projectsRef.current) {
           const scrollWidth = projectsRef.current.scrollWidth
@@ -84,7 +80,6 @@ export default function Projects() {
 
       let horizontalTween = createHorizontalTween()
 
-      // Redéfinition de la tween lors du redimensionnement avec debounce
       let resizeTimeout: ReturnType<typeof setTimeout>
       const handleResize = () => {
         clearTimeout(resizeTimeout)
