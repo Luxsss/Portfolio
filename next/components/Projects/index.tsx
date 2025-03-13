@@ -38,66 +38,50 @@ export default function Projects() {
   }, [])
 
   useEffect(() => {
-    if (!projectsData) return
-
     gsap.registerPlugin(ScrollTrigger)
-    gsap.ticker.lagSmoothing(0)
 
-    const ctx = gsap.context(() => {
-      gsap.to(titleRef.current, {
+    gsap.to(titleRef.current, {
+      scrollTrigger: {
+        trigger: titleRef.current,
+        scrub: true,
+        start: "top 80%",
+        end: "top 20%",
+      },
+      "--border-scale": 1,
+      ease: "power2.out",
+    })
+
+    const calculateWidth = () => {
+      if (horizontalRef.current && projectsRef.current) {
+        const scrollWidth = projectsRef.current.scrollWidth
+        return -(scrollWidth - window.innerWidth + window.innerWidth * 0.01)
+      }
+      return 0
+    }
+
+    if (sectionRef.current && horizontalRef.current && projectsRef.current) {
+      const horizontalScrollTween = gsap.to(projectsRef.current, {
+        x: calculateWidth,
+        ease: "none",
         scrollTrigger: {
-          trigger: titleRef.current,
-          scrub: true,
-          start: "top 80%",
-          end: "top 20%",
+          trigger: horizontalRef.current,
+          start: "top top",
+          end: () => `+=${projectsRef.current ? projectsRef.current.scrollWidth - window.innerWidth : 0}`,
+          scrub: 1,
+          pin: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
         },
-        "--border-scale": 1,
-        ease: "power2.out",
-        force3D: true,
       })
 
-      const createHorizontalTween = () => {
-        if (horizontalRef.current && projectsRef.current) {
-          const scrollWidth = projectsRef.current.scrollWidth
-          const distance = -(scrollWidth - window.innerWidth + window.innerWidth * 0.01)
-          return gsap.to(projectsRef.current, {
-            x: distance,
-            ease: "none",
-            force3D: true,
-            scrollTrigger: {
-              trigger: horizontalRef.current,
-              start: "top top",
-              end: `+=${Math.abs(distance)}`,
-              scrub: 1.5,
-              pin: true,
-              anticipatePin: 1,
-              invalidateOnRefresh: true,
-            },
-          })
-        }
-        return null
+      window.addEventListener("resize", () => {
+        ScrollTrigger.refresh()
+      })
+
+      return () => {
+        horizontalScrollTween.kill()
+        ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
       }
-
-      let horizontalTween = createHorizontalTween()
-
-      let resizeTimeout: ReturnType<typeof setTimeout>
-      const handleResize = () => {
-        clearTimeout(resizeTimeout)
-        resizeTimeout = setTimeout(() => {
-          if (horizontalTween) {
-            horizontalTween.kill()
-          }
-          horizontalTween = createHorizontalTween()
-          ScrollTrigger.refresh()
-        }, 200)
-      }
-      window.addEventListener("resize", handleResize)
-      return () => window.removeEventListener("resize", handleResize)
-    }, sectionRef)
-
-    return () => {
-      ctx.revert()
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill())
     }
   }, [projectsData])
 
