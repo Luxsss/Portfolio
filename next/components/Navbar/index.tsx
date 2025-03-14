@@ -11,11 +11,9 @@ export default function Navbar() {
   const menuItemsRef = useRef<HTMLLIElement[]>([])
   const socialItemsRef = useRef<HTMLAnchorElement[]>([])
 
-  // Reset the refs arrays
   menuItemsRef.current = []
   socialItemsRef.current = []
 
-  // Add to the refs arrays
   const addToMenuRefs = (el:any) => {
     if (el && !menuItemsRef.current.includes(el)) {
       menuItemsRef.current.push(el)

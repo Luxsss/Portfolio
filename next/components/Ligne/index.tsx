@@ -10,6 +10,15 @@ export default function Ligne() {
   const svgRefMobile = useRef<SVGSVGElement | null>(null);
   const pathRefMobile = useRef<SVGPathElement | null>(null);
 
+  useEffect( () => {
+      (
+        async () => {
+            const LocomotiveScroll = (await import('locomotive-scroll')).default
+            const locomotiveScroll = new LocomotiveScroll();
+        }
+      )()
+    }, [])
+
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
