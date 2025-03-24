@@ -7,8 +7,6 @@ import styles from "./style.module.css"
 
 export default function Contact() {
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const titleRef = useRef<HTMLHeadingElement>(null)
-  const buttonRef = useRef<HTMLButtonElement>(null)
   const modalRef = useRef<HTMLDivElement>(null)
   const formRef = useRef<HTMLFormElement>(null)
   const [name, setName] = useState<string>("");
@@ -57,35 +55,6 @@ export default function Contact() {
       requestIdRef.current = requestAnimationFrame(animateFloating)
     }
   }
-
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger)
-    gsap.to(titleRef.current, {
-      scrollTrigger: {
-        trigger: titleRef.current,
-        scrub: true,
-        start: "top 80%",
-        end: "top 20%",
-      },
-      "--border-scale": 1,
-      ease: "power2.out",
-    })
-
-    gsap.fromTo(
-      buttonRef.current,
-      { opacity: 0, y: 50 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        scrollTrigger: {
-          trigger: buttonRef.current,
-          start: "top 80%",
-        },
-        ease: "power2.out",
-      }
-    )
-  }, [])
 
   const openModal = () => {
     setIsModalOpen(true)
@@ -148,10 +117,10 @@ export default function Contact() {
   return (
     <div id="contact" className={styles.contactPage} onMouseMove={handleMouseMove}>
       <div className={styles.contactContainer}>
-        <h2 ref={titleRef} className={styles.contactTitle}>
+        <h2 className={styles.contactTitle}>
           DÉRANGEZ-MOI
         </h2>
-        <button ref={buttonRef} className={styles.contactButton} onClick={openModal}>
+        <button className={styles.contactButton} onClick={openModal}>
           DÉRANGEZ-MOI
         </button>
       </div>

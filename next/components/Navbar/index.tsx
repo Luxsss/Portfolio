@@ -8,6 +8,7 @@ export default function Navbar() {
   const navbarLogoRef = useRef(null)
   const navbarMenuRef = useRef(null)
   const menuContainerRef = useRef(null)
+  const buttonCvRefs = useRef(null)
   const menuItemsRef = useRef<HTMLLIElement[]>([])
   const socialItemsRef = useRef<HTMLAnchorElement[]>([])
 
@@ -32,7 +33,17 @@ export default function Navbar() {
     tl.to(navbarLogoRef.current, { duration: 1, rotationY: 180, ease: `power1.out` })
     tl.to(navbarLogoRef.current, { duration: 1, rotationX: 180, ease: `power1.out` })
 
-    gsap.from(navbarMenuRef.current, { duration: 1, y: -50, opacity: 0, ease: "bounce.out" })
+    const pulse = gsap.to(buttonCvRefs.current, {
+      scale: 1.1,
+      duration: 1,
+      yoyo: true,
+      repeat: -1,
+      ease: "power1.inOut",
+    })
+
+    return () => {
+      pulse.kill()
+    }
   }, [])
 
   useLayoutEffect(() => {
@@ -168,7 +179,7 @@ export default function Navbar() {
               <i className="fa-brands fa-linkedin-in fa-lg"></i>
             </a>
             <a ref={addToSocialRefs} href="mailto:alexis1.brun@epitech.eu" className={styles.socialLink} title="Email">
-              <i className="fa-solid fa-paper-plane fa-lg"></i>
+              <i className="fa-solid fa-envelope fa-lg"></i>
             </a>
             <a ref={addToSocialRefs} href="/download/CvAlexisBrunCom.pdf" target="_blank" className={styles.socialLink} title="CV" rel="noreferrer" download>
               CV
@@ -176,6 +187,10 @@ export default function Navbar() {
           </div>
         </div>
       </div>
+
+      <a ref={buttonCvRefs} href="/download/CvAlexisBrunCom.pdf" target="_blank" className={styles.buttonCV} title="CV" rel="noreferrer" download>
+        CV
+      </a>
     </>
   )
 }

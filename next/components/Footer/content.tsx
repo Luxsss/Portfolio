@@ -37,7 +37,7 @@ const Section1 = () => {
           </li>
           <li className={"ml-5 text-[#edebe9]"}>
             <a className={styles.socialLink} href="mailto:alexis1.brun@epitech.eu">
-              <i className="fa-solid fa-paper-plane fa-lg"></i>
+              <i className="fa-solid fa-envelope fa-lg"></i>
             </a>
           </li>
           <li className={"ml-5 text-[#edebe9]"}>

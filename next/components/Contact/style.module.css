@@ -41,29 +41,18 @@
   font-size: 70px;
   color: #4d4c4c;
   background: none;
-  border: none;
+  border: 2px solid #4d4c4c;
+  border-radius: 10px;
   cursor: pointer;
   position: relative;
   padding: 10px 20px;
   transition: all 0.3s ease;
 }
 
-.contactButton::after {
-  content: "";
-  display: block;
-  width: 100%;
-  height: 5px;
-  background-color: #4d4c4c;
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s ease;
-}
-
-.contactButton:hover::after {
-  transform: scaleX(1);
+.contactButton:hover {
+  background-color: rgba(77, 76, 76, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(77, 76, 76, 0.1);
 }
 
 .modalOverlay {

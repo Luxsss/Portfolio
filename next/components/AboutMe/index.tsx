@@ -5,7 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import gsap from 'gsap';
 
 const phrase =
-  "Je suis étudiant à la Web Académie d'Epitech, où je me spécialise en développement web. Chaque semaine, je travaille sur des projets concrets qui renforcent mes compétences. Ma passion grandit chaque jour pour le développement web me pousse à innover et à trouver des solutions créatives pour les utilisateurs. Je recherche des opportunités stimulantes pour mettre en valeur mes compétences techniques et mon esprit d'équipe. Je suis ouvert aux collaborations et je suis enthousiaste à l'idée d'apprendre en continu dans ce domaine en évolution rapide.";
+  "Tout a commencé avec une passion dévorante pour les jeux vidéo – et quelques nuits blanches bien méritées. À force de respawn et de rage quits, une question m’a traversé l’esprit : « Mais qui code ces mondes dans lesquels je passe des heures ? » Curiosité piquée, j’ai plongé dans les coulisses du numérique… et découvert le développement web. Aujourd’hui, entre balises, logique et bugs un peu trop joueurs, j’ai trouvé un nouvel univers où je peux m’exprimer, apprendre et créer. Je continue de jouer — mais désormais, c’est moi qui crée.";
 
 export default function AboutMe() {
   const wordsRef = useRef<HTMLParagraphElement[]>([]);

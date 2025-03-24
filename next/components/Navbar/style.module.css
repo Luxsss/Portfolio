@@ -132,6 +132,32 @@
   transform: translateY(-3px);
 }
 
+.buttonCV {
+  position: fixed;
+  top: 15vh;
+  right: -1.5vw;
+  background-color: #2d2a27;
+  color: #edebe9;
+  border: none;
+  padding: clamp(10px, 4vw, 50px);
+  border-radius: 50%;
+  font-weight: 500;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 40;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  font-size: clamp(0.8rem, 2vw, 1.5rem);
+}
+
+.buttonCV:hover {
+  background-color: #3a3733;
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .navbarLogo {
@@ -145,6 +171,16 @@
   .menuContainer {
     right: 15px;
     max-width: 250px;
+  }
+
+  .buttonCV {
+    top: auto;
+    bottom: 30px;
+    right: 20px;
+    transform: none;
+    border-radius: 50px;
+    padding: clamp(8px, 4vw, 14px);
+    font-size: clamp(0.8rem, 2vw, 1rem);
   }
 }
 
@@ -169,5 +205,12 @@
 
   .socialContainer {
     padding: 10px 15px 15px;
+  }
+
+  .buttonCV {
+    bottom: 20px;
+    right: 15px;
+    padding: clamp(6px, 3vw, 12px);
+    font-size: clamp(0.7rem, 2vw, 0.9rem);
   }
 }

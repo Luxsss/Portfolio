@@ -106,7 +106,7 @@ export default function Projects() {
                   <div className={styles.technologies}>
                     <span>{project.technologies}</span>
                   </div>
-                  <a href={project.url} className={styles.projectButton} aria-label={`Voir le projet ${project.title}`}>
+                  <a href={project.url} className={styles.projectButton} target="_blank" aria-label={`Voir le projet ${project.title}`}>
                     <span>Voir le projet</span>
                   </a>
                 </div>
