@@ -32,10 +32,10 @@
 }
 
 .firstContainer h1 {
-  font-weight: 500;
+  font-weight: 425;
   font-size: 100px;
   color: #4d4c4c;
-  font-family: 'MyFont', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .firstText{
