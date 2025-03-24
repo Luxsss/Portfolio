@@ -26,22 +26,22 @@ const Section1 = () => {
         <p className={styles.footer}>SOCIALS</p>
         <ul className="flex justify-center md:justify-between items-center">
           <li className={"text-[#edebe9]"}>
-            <a className={styles.socialLink} href="https://github.com/Luxsss" target="_blank" rel="noopener noreferrer">
+            <a className={styles.socialLink} href="https://github.com/Luxsss" target="_blank" rel="noopener noreferrer" data-testid="button-GitHub" title="GitHub">
               <i className="fa-brands fa-github fa-lg"></i>
             </a>
           </li>
           <li className={"ml-5 text-[#edebe9]"}>
-            <a className={styles.socialLink} href="https://www.linkedin.com/in/alexs-brun/" target="_blank" rel="noopener noreferrer">
+            <a className={styles.socialLink} href="https://www.linkedin.com/in/alexs-brun/" target="_blank" rel="noopener noreferrer" data-testid="button-LinkedIn" title="LinkedIn">
               <i className="fa-brands fa-linkedin-in fa-lg"></i>
             </a>
           </li>
           <li className={"ml-5 text-[#edebe9]"}>
-            <a className={styles.socialLink} href="mailto:alexis1.brun@epitech.eu">
+            <a className={styles.socialLink} href="mailto:alexis1.brun@epitech.eu" data-testid="button-Email" title="Email">
               <i className="fa-solid fa-envelope fa-lg"></i>
             </a>
           </li>
           <li className={"ml-5 text-[#edebe9]"}>
-            <a className={styles.socialLink} href="/download/CvAlexisBrunCom.pdf" download>
+            <a className={styles.socialLink} href="/download/CvAlexisBrunCom.pdf" data-testid="button-CV" title="CV" download>
               CV
             </a>
           </li>

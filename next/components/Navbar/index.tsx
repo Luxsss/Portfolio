@@ -143,25 +143,25 @@ export default function Navbar() {
           <nav className={styles.menuNav}>
             <ul className={styles.menuList}>
               <li ref={addToMenuRefs} className={styles.menuItem} onClick={toggleMenu}>
-                <a href="#home">
+                <a href="#home" title="Home">
                   <span className={styles.menuIcon}>🏠</span>
                   <span className={styles.menuText}>Accueil</span>
                 </a>
               </li>
               <li ref={addToMenuRefs} className={styles.menuItem} onClick={toggleMenu}>
-                <a href="#about">
+                <a href="#about" title="A propos">
                   <span className={styles.menuIcon}>👤</span>
                   <span className={styles.menuText}>À propos</span>
                 </a>
               </li>
               <li ref={addToMenuRefs} className={styles.menuItem} onClick={toggleMenu}>
-                <a href="#projects">
+                <a href="#projects" title="Projets">
                   <span className={styles.menuIcon}>🔨</span>
                   <span className={styles.menuText}>Projets</span>
                 </a>
               </li>
               <li ref={addToMenuRefs} className={styles.menuItem} onClick={toggleMenu}>
-                <a href="#contact">
+                <a href="#contact" title="Contact">
                   <span className={styles.menuIcon}>✉️</span>
                   <span className={styles.menuText}>Contact</span>
                 </a>
@@ -181,14 +181,14 @@ export default function Navbar() {
             <a ref={addToSocialRefs} href="mailto:alexis1.brun@epitech.eu" className={styles.socialLink} title="Email">
               <i className="fa-solid fa-envelope fa-lg"></i>
             </a>
-            <a ref={addToSocialRefs} href="/download/CvAlexisBrunCom.pdf" target="_blank" className={styles.socialLink} title="CV" rel="noreferrer" download>
+            <a ref={addToSocialRefs} href="/download/CvAlexisBrunCom.pdf" target="_blank" className={styles.socialLink} title="CV" data-testid="cv-menu" rel="noreferrer" download>
               CV
             </a>
           </div>
         </div>
       </div>
 
-      <a ref={buttonCvRefs} href="/download/CvAlexisBrunCom.pdf" target="_blank" className={styles.buttonCV} title="CV" rel="noreferrer" download>
+      <a ref={buttonCvRefs} href="/download/CvAlexisBrunCom.pdf" target="_blank" className={styles.buttonCV} title="CV" data-testid="cv-button" rel="noreferrer" download>
         CV
       </a>
     </>

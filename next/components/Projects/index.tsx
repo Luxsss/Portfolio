@@ -31,7 +31,7 @@ export default function Projects() {
           setProjectsData(json.data)
         }
       } catch (err) {
-        console.error(err)
+        //
       }
     }
     fetchProjects()
@@ -85,7 +85,7 @@ export default function Projects() {
     }
   }, [projectsData])
 
-  if(!projectsData) return <p>Loading ...</p>
+  if(!projectsData) return <div id="projects"><p>Loading ...</p></div>
 
   return (
     <div id="projects">

@@ -112,15 +112,10 @@ export default function Contact() {
     }
   };
 
-
-
   return (
     <div id="contact" className={styles.contactPage} onMouseMove={handleMouseMove}>
       <div className={styles.contactContainer}>
-        <h2 className={styles.contactTitle}>
-          DÉRANGEZ-MOI
-        </h2>
-        <button className={styles.contactButton} onClick={openModal}>
+        <button className={styles.contactButton} data-testid="button-contact" onClick={openModal}>
           DÉRANGEZ-MOI
         </button>
       </div>
