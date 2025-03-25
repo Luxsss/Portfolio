@@ -11,6 +11,13 @@ export default function Ligne() {
   const pathRefMobile = useRef<SVGPathElement | null>(null);
 
   useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
     const isMobile = window.innerWidth <= 425;
