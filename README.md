@@ -35,7 +35,7 @@ Ce projet présente un portfolio personnel interactif, développé avec Next.js 
 ### Cloner le projet
 
 ```bash
-git clone git@github.com:Luxsss/Portfolio.git
+git clone git@github.com:EpitechWebAcademiePromo2025/W-PRO-260-PAR-3-1-portfoliotitre-alexis1.brun.git
 ```
 
 ### Accéder au répertoire
