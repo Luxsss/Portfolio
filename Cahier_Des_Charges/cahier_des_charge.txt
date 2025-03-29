@@ -1,0 +1,76 @@
+Cahier des Charges – Portfolio Personnel
+
+Fonctionnalités Principales
+
+Page « Accueil » :
+- Navbar (sticky) :
+  - Logo animé avec initiales du créateur.
+  - Menu burger interactif :
+    - Navigation vers chaque section (Accueil, À propos, Projets, Contact).
+    - Boutons réseaux sociaux (GitHub, LinkedIn, Mail).
+    - Bouton de téléchargement du CV.
+  - Animation fluide d'apparition des liens et boutons.
+  - Effet blur subtil en arrière-plan.
+
+- Présentation du créateur** :
+  - Deux images (professionnelle et décorative).
+  - Titre du métier.
+  - Titre prénom animé avec défilement dynamique lié au scroll (gauche-droite selon le sens du scroll).
+
+- Bouton CV (sticky)** :
+  - Positionné à droite.
+  - Animation de pulsation.
+
+Page « À propos » :
+- Titre animé : ligne apparaissant progressivement sous le titre lors du scroll.
+- Biographie animée apparaissant progressivement en scrollant.
+
+Page « Projets » :
+- Titre animé avec ligne apparaissant progressivement sous le titre.
+- Présentation dynamique des projets sous forme de cartes :
+  - Image, Titre, Description, Technologies, URL.
+  - Récupération automatique des projets via Supabase et API Routes Next.js.
+  - Scroll horizontal des cartes déclenché par le défilement vertical.
+
+Page « Contact » :
+- Phrase d’accroche.
+- Formulaire interactif (Prénom/Nom, Email, Message).
+  - Envoi automatique du courriel au créateur.
+- Animation interactive avec 3 flèches suivant subtilement les mouvements de la souris.
+
+Bas de Page (Footer) :
+- Informations générales.
+- Accès direct aux réseaux sociaux et téléchargement du CV.
+
+---
+
+Spécifications Techniques
+
+Technologie & Développement :
+- Framework : Next.js
+- Base de données : Supabase
+- Animation : GSAP
+- Responsive Design : Desktop et Mobile, Flat Design, format One-page.
+- SEO : Optimisation complète pour le référencement naturel.
+- Tests & Mockups : Réalisation de tests unitaires et de mockups avec Jest pour vérifier le bon affichage des informations sur chaque page.
+
+Hébergement & Nom de Domaine :
+- Hébergeur** : Vercel
+- Nom de domaine personnalisé** : alexisbn.com
+- Certificat SSL (HTTPS)
+
+---
+
+Cahier des Charges Graphique
+
+Visuel :
+- Palette de couleurs définie :**
+  - Fond : #e5e0da
+  - Texte principal : #2d2a27
+  - Éléments secondaires : #edebe9
+- Typographie claire, lisible, et adaptée aux interfaces web.
+
+UI / UX :
+- Navigation fluide et intuitive, optimisée pour une expérience utilisateur agréable.
+- Temps de chargement rapide (optimisation images en WebP).
+- Animations subtiles pour dynamiser l'expérience utilisateur sans surcharger l'interface.
