@@ -35,7 +35,7 @@ Ce projet présente un portfolio personnel interactif, développé avec Next.js 
 ### Cloner le projet
 
 ```bash
-git clone https://github.com/votre-utilisateur/votre-projet.git
+git clone git@github.com:Luxsss/Portfolio.git
 ```
 
 ### Accéder au répertoire
