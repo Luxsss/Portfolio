@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     siteName: "Portfolio d'Alexis Brun",
     images: [
       {
-        url: "/images/image1.webp",
+        url: "https://alexisbn.com/images/image1.webp",
         width: 1200,
         height: 630,
         alt: "Alexis Brun - Développeur Full Stack",
