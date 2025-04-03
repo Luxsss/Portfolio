@@ -108,7 +108,10 @@ export default function RootLayout({
           crossOrigin="anonymous"
           strategy="afterInteractive"
         />
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet"/>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap"
+          rel="stylesheet"
+        />
         <Script
           id="structured-data"
           type="application/ld+json"
@@ -118,6 +121,7 @@ export default function RootLayout({
               "@type": "Person",
               name: "Alexis Brun",
               url: "https://alexisbn.com",
+              image: "https://alexisbn.com/images/image1.webp",
               jobTitle: "Développeur Full Stack",
               knowsAbout: ["JavaScript", "React", "Node.js", "TypeScript", "Next.js"],
               sameAs: [
