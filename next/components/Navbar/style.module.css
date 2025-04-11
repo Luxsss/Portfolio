@@ -85,6 +85,17 @@
   white-space: nowrap;
 }
 
+.menuItem button {
+  display: flex;
+  align-items: center;
+  color: #edebe9;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 12px 25px;
+  transition: background-color 0.3s ease;
+  white-space: nowrap;
+}
+
 .menuItem a:hover {
   background-color: rgba(237, 235, 233, 0.1);
 }
