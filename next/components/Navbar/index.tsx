@@ -48,7 +48,7 @@ export default function Navbar() {
   const handleLogin = async () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
-      options: { redirectTo: window.location.origin },
+      options: { redirectTo: "https://" },
     })
     if (error) {
       console.error("Erreur lors de la connexion :", error)
