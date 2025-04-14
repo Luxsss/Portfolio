@@ -16,3 +16,8 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+.smoothed {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

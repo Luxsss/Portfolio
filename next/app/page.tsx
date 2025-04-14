@@ -8,7 +8,7 @@ import Ligne from "@/components/Ligne"
 
 export default function Home() {
   return (
-    <div>
+    <div className="smoothed">
       <Ligne />
       <Navbar />
       <Header />
