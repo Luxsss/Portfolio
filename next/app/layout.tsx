@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Alexis Brun | Développeur Full Stack | Portfolio",
+  title: "Alexis Brun | Développeur Full Stack & Web Developer - Portfolio",
   description:
     "Portfolio d'Alexis Brun, développeur Full Stack spécialisé dans les technologies web modernes. Découvrez mes projets, compétences et expériences professionnelles.",
   keywords: [
