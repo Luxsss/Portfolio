@@ -153,7 +153,9 @@ export default function Navbar() {
     <>
       <div className={styles.navbarContainer}>
         <div className={styles.navbarLogo}>
-          <p ref={navbarLogoRef}>AB</p>
+          <a href="#home" title="Home">
+            <p ref={navbarLogoRef}>AB</p>
+          </a>
         </div>
         <div
           ref={navbarMenuRef}
