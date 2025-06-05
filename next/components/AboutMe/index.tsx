@@ -5,7 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import gsap from 'gsap';
 
 const phrase =
-  "Tout a commencé avec une passion dévorante pour les jeux vidéo – et quelques nuits blanches bien méritées. À force de respawn et de rage quits, une question m’a traversé l’esprit : « Mais qui code ces mondes dans lesquels je passe des heures ? » Curiosité piquée, j’ai plongé dans les coulisses du numérique… et découvert le développement web. Aujourd’hui, entre balises, logique et bugs un peu trop joueurs, j’ai trouvé un nouvel univers où je peux m’exprimer, apprendre et créer. Je continue de jouer — mais désormais, c’est moi qui crée.";
+  "Ma curiosité pour le développement web est née d'une passion de longue date pour les jeux vidéo – et de quelques nuits blanches à explorer des mondes virtuels. Un jour, je me suis demandé : « Qui crée ces univers où je passe tant de temps ? » De fil en aiguille, j’ai découvert les coulisses du numérique. Aujourd’hui, c’est dans le code que je m’exprime, que j’apprends et que je crée, toujours guidé par le même plaisir de jouer — mais cette fois, en construisant le jeu.";
 
 export default function AboutMe() {
   const wordsRef = useRef<HTMLParagraphElement[]>([]);
