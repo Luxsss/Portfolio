@@ -3,7 +3,8 @@ import { supabase } from "../../utils/supabase/client";
 export default async function handler(req, res) {
   const { data, error } = await supabase
     .from("projects")
-    .select("*");
+    .select("*")
+    .order("id", { ascending: true });
 
   if (error) {
     return res.status(500).json({ error: error.message });
