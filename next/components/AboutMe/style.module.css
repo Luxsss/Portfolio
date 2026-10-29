@@ -1,93 +1,61 @@
-@font-face {
-  font-family: 'MyFont';
-  src: url('/fonts/MyVariableFont-VF.ttf') format('truetype-variations');
-  font-weight: 100 900;
-  font-style: normal;
+.about {
+  margin-bottom: var(--section-gap);
 }
 
-.aboutContainer {
-  width: 80%;
-  margin: 0 auto 10vh auto;
-  padding: 20px;
-  text-align: left;
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 300px);
+  gap: clamp(32px, 6vw, 96px);
+  align-items: start;
+  width: var(--content);
+  margin: 0 auto;
 }
 
-.aboutContainer h2 {
-  display: inline-block;
-  font-family: 'MyFont', sans-serif;
-  font-weight: 500;
-  font-size: 70px;
-  color: #4d4c4c;
-  position: relative;
-  text-align: center;
-  margin-top: 40px;
-}
-
-.aboutContainer h2::after {
-  content: '';
-  display: block;
-  width: 100%;
-  height: 5px;
-  background-color: #4d4c4c;
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  transform: scaleX(0);
-  transform-origin: left;
-  transform: scaleX(var(--border-scale, 0));
-}
-
-.textContainer {
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  margin-bottom: 15vh;
-  color: rgb(102, 100, 100);
-}
-
-.textContent {
-  width: 80%;
-  display: flex;
-  flex-wrap: wrap;
-  padding-left: 1vh;
-}
-
-.textContent p {
-  font-family: 'MyFont', sans-serif;
-  padding-left: 1vh;
+.text {
+  font-size: clamp(1.25rem, 0.8rem + 1.8vw, 2.25rem);
   font-weight: 400;
-  font-size: 40px;
-  color: #666;
-  line-height: 1;
-  margin-top: 20px;
-  opacity: 0.2;
-  will-change: opacity;
+  line-height: 1.35;
+  color: var(--ink-soft);
 }
 
-@media (max-width: 768px) {
-  .aboutContainer {
-    width: 90%;
-    padding: 10px;
-    margin-bottom: 5vh;
+/* "En ce moment": quiet facts next to the story */
+
+.now {
+  position: sticky;
+  top: 120px;
+  padding-top: 8px;
+  border-top: 2px solid var(--ink-soft);
+}
+
+.nowTitle {
+  margin: 12px 0 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.nowItem {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.nowItem dt {
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.nowItem dd {
+  margin-top: 4px;
+  font-size: 1.125rem;
+  color: var(--ink);
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
   }
 
-  .aboutContainer h2 {
-    font-size: 40px;
-  }
-
-  .textContent {
-    width: 90%;
-    padding-left: 5vh;
-  }
-
-  .textContent p {
-    font-size: 20px;
-    margin-top: 10px;
-  }
-
-  .textContainer {
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 10vh;
+  .now {
+    position: static;
   }
 }

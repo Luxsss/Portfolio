@@ -1,51 +1,90 @@
 "use client"
+import { useEffect, useState } from "react"
+import { CV_PATH, SOCIALS } from "@/lib/site"
+import { Icon } from "@/components/Icons"
+import type { Dictionary } from "@/content"
 import styles from "./style.module.css"
 
-export default function Content() {
-  return (
-    <div className="bg-[#2C2A27] py-8 px-4 sm:px-12 h-full w-full flex flex-col justify-center items-center md:items-stretch">
-      <Section1 />
-    </div>
-  )
+const parisTime = new Intl.DateTimeFormat("fr-FR", {
+  hour: "2-digit",
+  minute: "2-digit",
+  timeZone: "Europe/Paris",
+  timeZoneName: "short",
+})
+
+function useParisTime() {
+  // Rendered empty on the server so the first client render matches the HTML.
+  const [time, setTime] = useState<string | null>(null)
+
+  useEffect(() => {
+    const tick = () => setTime(parisTime.format(new Date()))
+    tick()
+    const id = setInterval(tick, 30_000)
+    return () => clearInterval(id)
+  }, [])
+
+  return time
 }
 
-const Section1 = () => {
+export default function Content({ t, nav }: { t: Dictionary["footer"]; nav: Dictionary["nav"] }) {
+  const time = useParisTime()
+
   return (
-    <div className={`flex flex-col md:flex-row md:justify-between items-center md:items-end gap-6 md:gap-0 ${styles.footerContainer}`}>
-      <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left">
-        <div className="mb-4 sm:mb-0 sm:mx-5">
-          <p className={styles.footer}>VERSION</p>
-          <p className="text-[#edebe9] text-base sm:text-xl">2025 © Edition</p>
-        </div>
-        <div className="sm:mx-5">
-          <p className={styles.footer}>LOCAL TIME</p>
-          <p className="text-[#edebe9] text-base sm:text-xl">23:00 PM GMT+2</p>
+    <div className={styles.content}>
+      <div className={styles.top}>
+        <nav aria-label={t.navigation}>
+          <p className={styles.label}>{t.navigation}</p>
+          <ul className={styles.navList}>
+            {nav.links.map((link) => (
+              <li key={link.href}>
+                <a href={link.href}>{link.label}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <div className={styles.side}>
+          <p className={styles.label}>{t.socials}</p>
+          <ul className={styles.socials}>
+            {SOCIALS.map((social) => (
+              <li key={social.label}>
+                <a
+                  className={styles.socialLink}
+                  href={social.href}
+                  aria-label={social.label}
+                  data-testid={`button-${social.label}`}
+                  {...(social.icon !== "mail" && { target: "_blank", rel: "noopener noreferrer" })}
+                >
+                  <Icon name={social.icon} />
+                </a>
+              </li>
+            ))}
+            <li>
+              <a className={styles.socialLink} href={CV_PATH} aria-label={nav.cv} data-testid="button-CV" download>
+                CV
+              </a>
+            </li>
+          </ul>
+          <a href={nav.switchLanguage.href} hrefLang={nav.switchLanguage.lang} lang={nav.switchLanguage.lang} className={styles.language}>
+            {nav.switchLanguage.label}
+          </a>
         </div>
       </div>
-      <div className="text-center md:text-left">
-        <p className={styles.footer}>SOCIALS</p>
-        <ul className="flex justify-center md:justify-between items-center">
-          <li className={"text-[#edebe9]"}>
-            <a className={styles.socialLink} href="https://github.com/Luxsss" target="_blank" rel="noopener noreferrer" data-testid="button-GitHub" title="GitHub">
-              <i className="fa-brands fa-github fa-lg"></i>
-            </a>
-          </li>
-          <li className={"ml-5 text-[#edebe9]"}>
-            <a className={styles.socialLink} href="https://www.linkedin.com/in/alexs-brun/" target="_blank" rel="noopener noreferrer" data-testid="button-LinkedIn" title="LinkedIn">
-              <i className="fa-brands fa-linkedin-in fa-lg"></i>
-            </a>
-          </li>
-          <li className={"ml-5 text-[#edebe9]"}>
-            <a className={styles.socialLink} href="mailto:alexis1.brun@epitech.eu" data-testid="button-Email" title="Email">
-              <i className="fa-solid fa-envelope fa-lg"></i>
-            </a>
-          </li>
-          <li className={"ml-5 text-[#edebe9]"}>
-            <a className={styles.socialLink} href="/download/CvAlexisBrunCom.pdf" data-testid="button-CV" title="CV" download>
-              CV
-            </a>
-          </li>
-        </ul>
+
+      <p className={styles.wordmark} aria-hidden="true">
+        Alexis Brun
+      </p>
+
+      <div className={styles.bottom}>
+        <p>
+          <span className={styles.label}>{t.edition}</span> © {new Date().getFullYear()} Alexis Brun
+        </p>
+        <p>
+          <span className={styles.label}>{t.time}</span> <time>{time ?? "--:--"}</time>
+        </p>
+        <a href="#home" className={styles.backToTop}>
+          {t.backToTop}
+        </a>
       </div>
     </div>
   )

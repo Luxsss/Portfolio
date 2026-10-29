@@ -1,15 +1,16 @@
-"use client"
-import React, {useRef, useLayoutEffect, useState} from 'react'
-import Content from '@/components/Footer/content'
+import type { Dictionary } from "@/content"
+import Content from "./content"
+import styles from "./style.module.css"
 
-export default function Navbar() {
+// The footer sits under the page and is revealed as the last section scrolls away.
+export default function Footer({ t, nav }: { t: Dictionary["footer"]; nav: Dictionary["nav"] }) {
   return (
-    <div className='relative h-[250px]' style={{clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)"}} >
-      <div className='relative h-[calc(100vh+250px)] -top-[100vh]'>
-        <div className='h-[250px] sticky top-[calc(100vh-250px)]'>
-          <Content />
+    <footer className={styles.reveal}>
+      <div className={styles.revealTrack}>
+        <div className={styles.revealSticky}>
+          <Content t={t} nav={nav} />
         </div>
       </div>
-    </div>
+    </footer>
   )
 }

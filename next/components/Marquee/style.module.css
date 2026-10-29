@@ -1,0 +1,14 @@
+.marquee {
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.track,
+.group {
+  display: flex;
+  width: max-content;
+}
+
+.group {
+  flex: none;
+}

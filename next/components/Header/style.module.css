@@ -1,269 +1,144 @@
-@font-face {
-  font-family: 'MyFont';
-  src: url('/fonts/MyVariableFont-VF.ttf') format('truetype-variations');
-  font-weight: 100 900;
-  font-style: normal;
-}
-
-.headerContainer {
-  padding-top: 70px;
+.hero {
   position: relative;
   display: flex;
-  height: 100vh;
-  margin-bottom: 35vh;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding-top: 80px;
+  margin-bottom: var(--section-gap);
   overflow: hidden;
-  font-family: 'MyFont', sans-serif;
 }
 
-.imageContainer1 {
-  position: absolute;
-  top: calc(100vh - 80vh);
-  left: calc(100vw - 85vw);
-  width: 350px;
-  height: 450px;
+.stage {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(24px, 4vw, 64px);
+  align-items: start;
+  align-content: start;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: clamp(24px, 8vh, 96px) var(--gutter) 0 clamp(24px, 10vw, 200px);
 }
 
-.imageContainer2 {
-  position: absolute;
-  top: calc(100vh - 60vh);
-  left: calc(100vw - 65vw);
-  width: 250px;
-  height: 250px;
-}
+/* Photos */
 
-.firstContainer h1 {
-  font-weight: 700;
-  font-size: 100px;
-  font-size: clamp(80px, 12vw, 100px);
-  color: #2a2a2a;
-  font-family: 'Poppins', sans-serif;
-  text-transform: uppercase;
-  letter-spacing: -5px;
-}
-
-.firstText{
-  position: absolute;
-  top: calc(100vh - 80vh);
-  left: calc(100vw - 55vw);
-}
-
-.secondText{
-  position: absolute;
-  top: calc(100vh - 60vh);
-  left: calc(100vw - 45vw);
-}
-
-.sliderContainer {
-  position: absolute;
-  top: calc(100vh - 350px);
-}
-
-.slider {
+.photos {
   position: relative;
-  white-space: nowrap;
+  width: clamp(180px, 24vw, 350px);
 }
 
-.slider h1 {
+.photoMain {
   position: relative;
-  margin: 0px;
-  color: rgb(255, 255, 255);
-  font-size: 240px;
+  aspect-ratio: 7 / 9;
+}
+
+.photoSmall {
+  position: absolute;
+  top: 48%;
+  left: 72%;
+  width: 72%;
+  aspect-ratio: 1;
+}
+
+.frame {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.frame img {
+  object-fit: cover;
+}
+
+/* Titles */
+
+.titles {
+  padding-top: clamp(0px, 3vh, 40px);
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  font-size: clamp(3rem, 7.5vw, 7rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--ink-soft);
+}
+
+/* Each line masks its text so the intro can slide it up from below. */
+.line {
+  display: block;
+  overflow: hidden;
+  padding: 0.04em 0 0.14em;
+}
+
+.line > span {
+  display: inline-block;
+}
+
+.indent {
+  margin-left: clamp(2rem, 9vw, 9rem);
+}
+
+.intro {
+  max-width: 34ch;
+  margin-top: clamp(16px, 3vh, 32px);
+  font-size: clamp(1rem, 0.9rem + 0.4vw, 1.25rem);
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+/* Marquee */
+
+.marquee {
+  position: relative;
+  z-index: 1;
+  margin-top: -0.3em;
+  font-size: clamp(6rem, 17vw, 15rem);
+}
+
+.marqueeItem {
+  padding-right: 0.3em;
   font-weight: 500;
-  padding-right: 50px;
-  font-family: 'MyFont', sans-serif;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #fff;
 }
 
-.slider h1:nth-of-type(2) {
-  position: absolute;
-  left: 100%;
-  top: 0;
-}
-
-.slider h1:nth-of-type(3) {
-  position: absolute;
-  left: 200%;
-  top: 0;
-}
-
-
-
-@media (max-width: 1340px) {
-  .firstText {
-    top: 23vh;
-    left: 45vw;
-  }
-
-  .secondText {
-    top: 40vh;
-    left: 60vw;
-  }
-}
-@media (max-width: 1160px) {
-  .firstText {
-    top: 25vh;
-    left: 50vw;
-  }
-
-  .secondText {
-    top: 40vh;
-    left: 65vw;
-  }
-
-  .firstContainer h1 {
-    font-weight: 700;
-    font-size: 100px;
-    font-size: clamp(80px, 12vw, 80px);
-    color: #2a2a2a;
-    font-family: 'Poppins', sans-serif;
-    text-transform: uppercase;
-    letter-spacing: -5px;
+/* Hidden until the intro timeline runs; the failsafe reveals it if scripts never do. */
+@media (prefers-reduced-motion: no-preference) {
+  :global(.js) .hero [data-intro] {
+    visibility: hidden;
+    animation: introFailsafe 0s 3s forwards;
   }
 }
 
-@media (max-width: 1000px) {
-
-  .firstContainer h1 {
-    font-size: 70px;
-  }
-
-  .firstText {
-    top: 10vh;
-    left: 30vw;
-  }
-
-  .secondText {
-    top: 20vh;
-    left: 55vw;
-  }
-}
-
-@media (max-width: 879px) {
-
-  .firstContainer h1 {
-    font-size: 70px;
-  }
-
-  .firstText {
-    top: 10vh;
-    left: 10vw;
-  }
-
-  .secondText {
-    top: 20vh;
-    left: 60vw;
+@keyframes introFailsafe {
+  to {
+    visibility: visible;
   }
 }
 
 @media (max-width: 768px) {
-  .firstContainer h1 {
-    font-size: 70px;
+  .stage {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+    padding-left: var(--gutter);
   }
 
-  .firstText {
-    top: 8vh;
-    left: 10vw;
+  .titles {
+    order: -1;
   }
 
-  .secondText {
-    top: 14vh;
-    left: 35vw;
-  }
-}
-
-@media (max-width: 524px) {
-  .firstContainer h1 {
-    font-size: 65px;
+  .photos {
+    width: min(52vw, 260px);
+    margin-left: 6vw;
   }
 
-  .firstText {
-    top: 8vh;
-    left: 5vw;
-  }
-
-  .secondText {
-    top: 14vh;
-    left: 25vw;
-  }
-}
-
-@media (max-width: 425px) {
-  .imageContainer1 {
-    position: absolute;
-    top: calc(100vh - 70vh);
-    left: calc(100vw - 85vw);
-    width: 230px;
-    height: 315px;
-  }
-
-  .imageContainer2 {
-    position: absolute;
-    top: calc(100vh - 40vh);
-    left: calc(100vw - 45vw);
-    width: 150px;
-    height: 150px;
-  }
-
-
-  .firstContainer h1 {
-    font-weight: 500;
-    font-size: clamp(50px, 12vw, 55px);
-    color: #2a2a2a;
-    font-family: 'Poppins', sans-serif;
-    text-transform: uppercase;
-    letter-spacing: -5px;
-  }
-
-  .firstText {
-    top: 12vh;
-    left: 5vw;
-  }
-
-  .secondText {
-    top: 22vh;
-    left: 20vw;
-  }
-
-  .sliderContainer {
-    position: absolute;
-    top: calc(100vh - 275px);
-  }
-
-  .slider p {
-    position: relative;
-    margin: 0px;
-    color: rgb(255, 255, 255);
-    font-size: 185px;
-    font-weight: 500;
-    padding-right: 50px;
-  }
-}
-
-@media (max-width: 375px) {
-  .firstContainer h1 {
-    font-weight: 500;
-    font-size: 45px;
-    color: #4d4c4c;
-  }
-
-  .firstText {
-    top: 10vh;
-    left: 5vw;
-  }
-
-  .secondText {
-    top: 20vh;
-    left: 15vw;
-  }
-}
-
-@media (max-width: 320px) {
-  .firstText {
-    top: 8vh;
-    left: 5vw;
-  }
-
-  .secondText {
-    top: 18vh;
-    left: 15vw;
+  .indent {
+    margin-left: 16vw;
   }
 }

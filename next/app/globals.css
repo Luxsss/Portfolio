@@ -2,22 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: 'MyVariableFont';
-  src: url('/fonts/MyVariableFont-VF.ttf') format('truetype-variations');
-  font-weight: 100 900;
-  font-style: normal;
+:root {
+  --paper: #e5e0da;
+  --card: #f1ede8;
+  --ink: #2d2a27;
+  --ink-soft: #4d4c4c;
+  --muted: #5f5a54;
+  --line: rgba(45, 42, 39, 0.14);
+  --signal: #be362f;
+  --signal-dark: #a92b24;
+  --on-ink: #edebe9;
+  --on-ink-muted: #9c968f;
+  --gutter: clamp(16px, 5vw, 64px);
+  --content: min(80%, 1200px);
+  --section-gap: clamp(96px, 16vh, 180px);
+  --footer-h: clamp(480px, 72vh, 640px);
+}
+
+@media (max-width: 768px) {
+  :root {
+    --content: calc(100% - 2 * var(--gutter));
+  }
 }
 
 body {
-  background-color: #e5e0da;
+  background-color: var(--paper);
+  color: var(--ink-soft);
 }
 
-html {
-  scroll-behavior: smooth;
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
-.smoothed {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 3px;
 }
