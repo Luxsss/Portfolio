@@ -1,0 +1,91 @@
+.timeline {
+  margin-bottom: var(--section-gap);
+}
+
+.body {
+  position: relative;
+  width: var(--content);
+  margin: 0 auto;
+}
+
+/* Sits between the period column and the entry, like a spine. */
+.rule {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(clamp(110px, 16vw, 220px) + 12px);
+  width: 2px;
+  background-color: var(--ink-soft);
+  transform-origin: top;
+}
+
+.entry {
+  position: relative;
+  display: grid;
+  grid-template-columns: clamp(110px, 16vw, 220px) minmax(0, 1fr);
+  column-gap: 48px;
+  padding-bottom: clamp(32px, 6vh, 64px);
+}
+
+.entry:last-child {
+  padding-bottom: 0;
+}
+
+.entry::before {
+  content: "";
+  position: absolute;
+  top: 0.45em;
+  left: calc(clamp(110px, 16vw, 220px) + 7px);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--paper);
+  border: 2px solid var(--ink-soft);
+}
+
+.period {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.entryTitle {
+  font-size: clamp(1.25rem, 1rem + 1vw, 1.75rem);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.place {
+  margin-top: 4px;
+  color: var(--muted);
+}
+
+.text {
+  max-width: 60ch;
+  margin-top: 12px;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+@media (max-width: 600px) {
+  .rule {
+    left: 5px;
+  }
+
+  .entry {
+    grid-template-columns: minmax(0, 1fr);
+    padding-left: 32px;
+  }
+
+  .entry::before {
+    left: 0;
+    top: 0.3em;
+  }
+
+  .period {
+    margin-bottom: 4px;
+  }
+}

@@ -2,15 +2,19 @@ import type { Config } from "tailwindcss";
 
 export default {
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        paper: "var(--paper)",
+        ink: "var(--ink)",
+        "on-ink": "var(--on-ink)",
+        "on-ink-muted": "var(--on-ink-muted)",
+      },
+      fontFamily: {
+        sans: ["var(--font-nohemi)", "system-ui", "sans-serif"],
       },
     },
   },

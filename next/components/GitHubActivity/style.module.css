@@ -1,0 +1,174 @@
+.github {
+  margin-bottom: var(--section-gap);
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(28px, 5vh, 48px);
+  width: var(--content);
+  margin: 0 auto;
+}
+
+.intro {
+  font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+  color: var(--ink-soft);
+}
+
+/* Contribution heatmap: one-hue ramp on the brand red (validated light→dark, light end ≥ 2:1 on paper). */
+
+.heatmap {
+  --cell: clamp(9px, 1.05vw, 15px);
+  position: relative;
+}
+
+.total {
+  margin-bottom: 14px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.scroll {
+  overflow-x: auto;
+  scrollbar-width: thin;
+  padding-bottom: 6px;
+}
+
+.grid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(7, var(--cell));
+  grid-auto-columns: var(--cell);
+  gap: 3px;
+  width: max-content;
+}
+
+.cell {
+  display: block;
+  width: var(--cell);
+  height: var(--cell);
+  border-radius: 2px;
+  background-color: rgba(45, 42, 39, 0.08);
+}
+
+.cell[data-level="1"] {
+  background-color: #d38a7e;
+}
+
+.cell[data-level="2"] {
+  background-color: #c25e52;
+}
+
+.cell[data-level="3"] {
+  background-color: #a8352d;
+}
+
+.cell[data-level="4"] {
+  background-color: #6f1c17;
+}
+
+.grid .cell:hover {
+  outline: 2px solid var(--ink);
+  outline-offset: 1px;
+}
+
+.legend {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  margin-top: 10px;
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+.legend span:first-child {
+  margin-right: 4px;
+}
+
+.legend span:last-child {
+  margin-left: 4px;
+}
+
+.tooltip {
+  position: absolute;
+  z-index: 2;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background-color: var(--ink);
+  color: var(--on-ink);
+  font-size: 0.8125rem;
+  white-space: nowrap;
+  pointer-events: none;
+  transform: translate(-50%, calc(-100% - 8px));
+}
+
+/* Latest repositories */
+
+.reposTitle {
+  margin-bottom: 16px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.repos {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.repo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  height: 100%;
+  padding-top: 12px;
+  border-top: 2px solid var(--ink-soft);
+}
+
+.repoName {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.repo:hover .repoName {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.repoDescription {
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.repoMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  margin-top: auto;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.profile {
+  align-self: flex-start;
+  padding: 9px 18px;
+  border: 1px solid var(--ink-soft);
+  border-radius: 999px;
+  background-color: var(--paper);
+  color: var(--ink-soft);
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+.profile:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+@media (max-width: 768px) {
+  .repos {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

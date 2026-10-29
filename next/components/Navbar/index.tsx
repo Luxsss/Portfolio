@@ -1,285 +1,106 @@
 "use client"
-import { useRef, useLayoutEffect, useState, useEffect } from "react"
+import { useEffect, useRef, useState } from "react"
+import { gsap, useGSAP, prefersReducedMotion } from "@/lib/gsap"
+import { CV_PATH, SOCIALS } from "@/lib/site"
+import { Icon } from "@/components/Icons"
+import type { Dictionary } from "@/content"
 import styles from "./style.module.css"
-import gsap from "gsap"
-import { supabase } from "../../utils/supabase/client"
 
-export default function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [user, setUser] = useState<any>(null)
-  const navbarLogoRef = useRef<HTMLParagraphElement>(null)
-  const navbarMenuRef = useRef<HTMLDivElement>(null)
-  const menuContainerRef = useRef<HTMLDivElement>(null)
-  const buttonCvRefs = useRef<HTMLAnchorElement>(null)
-  const menuItemsRef = useRef<HTMLLIElement[]>([])
-  const socialItemsRef = useRef<HTMLAnchorElement[]>([])
+export default function Navbar({ t }: { t: Dictionary["nav"] }) {
+  const [isOpen, setIsOpen] = useState(false)
+  const menuRef = useRef<HTMLElement>(null)
+  const toggleRef = useRef<HTMLButtonElement>(null)
+  const timeline = useRef<gsap.core.Timeline | null>(null)
 
-  menuItemsRef.current = []
-  socialItemsRef.current = []
-
-  const addToMenuRefs = (el: any) => {
-    if (el && !menuItemsRef.current.includes(el)) {
-      menuItemsRef.current.push(el)
-    }
-  }
-
-  const addToSocialRefs = (el: any) => {
-    if (el && !socialItemsRef.current.includes(el)) {
-      socialItemsRef.current.push(el)
-    }
-  }
+  useGSAP(() => {
+    const shift = prefersReducedMotion() ? 0 : 1
+    timeline.current = gsap
+      .timeline({ paused: true, defaults: { duration: 0.3, ease: "power2.out" } })
+      .fromTo(menuRef.current, { autoAlpha: 0, scale: 1 - 0.05 * shift }, { autoAlpha: 1, scale: 1, duration: 0.35, ease: "back.out(1.2)" })
+      .fromTo("[data-menu-item]", { autoAlpha: 0, x: -20 * shift }, { autoAlpha: 1, x: 0, stagger: 0.06 }, "<0.1")
+      .fromTo("[data-menu-social]", { autoAlpha: 0, y: 12 * shift }, { autoAlpha: 1, y: 0, stagger: 0.05 }, "<0.15")
+  }, { scope: menuRef })
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setUser(session?.user ?? null)
-    })
+    const tl = timeline.current
+    if (!tl) return
+    // Closing replays the same timeline backwards, a bit faster.
+    tl.timeScale(isOpen ? 1 : 1.6)
+    if (isOpen) tl.play()
+    else tl.reverse()
+  }, [isOpen])
 
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((event, session) => {
-      setUser(session?.user ?? null)
-    })
-
-    return () => {
-      subscription.unsubscribe()
+  useEffect(() => {
+    if (!isOpen) return
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return
+      setIsOpen(false)
+      toggleRef.current?.focus()
     }
-  }, [])
+    window.addEventListener("keydown", onKeyDown)
+    return () => window.removeEventListener("keydown", onKeyDown)
+  }, [isOpen])
 
-  const handleLogin = async () => {
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: { redirectTo: "https://www.alexisbn.com/" },
-    })
-    if (error) {
-      console.error("Erreur lors de la connexion :", error)
-    }
-  }
-
-  const handleLogout = async () => {
-    const { error } = await supabase.auth.signOut()
-    if (error) {
-      console.error("Erreur lors de la déconnexion :", error)
-    }
-  }
-
-  useLayoutEffect(() => {
-    const tl = gsap.timeline({ repeat: -1, yoyo: true, repeatDelay: 2 })
-    tl.to(navbarLogoRef.current, { duration: 1, rotation: 180, ease: "power1.out" })
-    tl.to(navbarLogoRef.current, { duration: 1, rotationY: 180, ease: "power1.out" })
-    tl.to(navbarLogoRef.current, { duration: 1, rotationX: 180, ease: "power1.out" })
-
-    const pulse = gsap.to(buttonCvRefs.current, {
-      scale: 1.1,
-      duration: 1,
-      yoyo: true,
-      repeat: -1,
-      ease: "power1.inOut",
-    })
-
-    return () => {
-      pulse.kill()
-    }
-  }, [])
-
-  useLayoutEffect(() => {
-    if (isMenuOpen) {
-      gsap.to(menuContainerRef.current, {
-        duration: 0.5,
-        opacity: 1,
-        visibility: "visible",
-        scale: 1,
-        ease: "back.out(1.2)",
-      })
-
-      gsap.fromTo(
-        menuItemsRef.current,
-        { x: -20, opacity: 0 },
-        {
-          duration: 0.4,
-          x: 0,
-          opacity: 1,
-          stagger: 0.08,
-          ease: "power2.out",
-          delay: 0.1,
-        }
-      )
-
-      gsap.fromTo(
-        socialItemsRef.current,
-        { y: 20, opacity: 0 },
-        {
-          duration: 0.4,
-          y: 0,
-          opacity: 1,
-          stagger: 0.08,
-          ease: "power2.out",
-          delay: 0.5,
-        }
-      )
-    } else if (menuContainerRef.current) {
-      gsap.to(socialItemsRef.current, {
-        duration: 0.2,
-        y: 10,
-        opacity: 0,
-        stagger: 0.03,
-        ease: "power2.in",
-      })
-
-      gsap.to(menuItemsRef.current, {
-        duration: 0.2,
-        x: -10,
-        opacity: 0,
-        stagger: 0.03,
-        ease: "power2.in",
-      })
-
-      gsap.to(menuContainerRef.current, {
-        duration: 0.4,
-        opacity: 0,
-        scale: 0.9,
-        ease: "power2.in",
-        onComplete: () => {
-          gsap.set(menuContainerRef.current, { visibility: "hidden" })
-        },
-      })
-    }
-  }, [isMenuOpen])
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen)
-  }
+  const close = () => setIsOpen(false)
 
   return (
     <>
-      <div className={styles.navbarContainer}>
-        <div className={styles.navbarLogo}>
-          <a href="#home" title="Home">
-            <p ref={navbarLogoRef}>AB</p>
+      <header className={styles.navbar}>
+        <a href="#home" className={styles.logo} aria-label={t.home}>
+          <span>AB</span>
+        </a>
+        <button
+          ref={toggleRef}
+          type="button"
+          className={styles.toggle}
+          aria-expanded={isOpen}
+          aria-controls="site-menu"
+          aria-label={isOpen ? t.close : t.open}
+          onClick={() => setIsOpen((open) => !open)}
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+            {isOpen ? <path d="M18 6 6 18M6 6l12 12" /> : <path d="M4 6h16M4 12h16M12 18h8" />}
+          </svg>
+        </button>
+      </header>
+
+      <nav id="site-menu" ref={menuRef} className={styles.menu} aria-label={t.menuLabel}>
+        <ul className={styles.menuList}>
+          {t.links.map((link) => (
+            <li key={link.href} data-menu-item>
+              <a href={link.href} onClick={close}>
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <div className={styles.separator} />
+
+        <div className={styles.socials}>
+          {SOCIALS.map((social) => (
+            <a
+              key={social.label}
+              href={social.href}
+              className={styles.socialLink}
+              aria-label={social.label}
+              data-menu-social
+              {...(social.icon !== "mail" && { target: "_blank", rel: "noopener noreferrer" })}
+            >
+              <Icon name={social.icon} />
+            </a>
+          ))}
+          <a href={CV_PATH} className={styles.socialLink} aria-label={t.cv} data-menu-social data-testid="cv-menu" download>
+            CV
           </a>
         </div>
-        <div
-          ref={navbarMenuRef}
-          className={`${styles.navbarMenu} ${isMenuOpen ? styles.active : ""}`}
-          onClick={toggleMenu}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            strokeWidth="2"
-            stroke="currentColor"
-            fill="none"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            {isMenuOpen ? (
-              <path d="M18 6L6 18M6 6l12 12" />
-            ) : (
-              <>
-                <path fill="none" stroke="none" d="M0 0h24v24H0z" />
-                <path d="M4 6H20M4 12H20M12 18H20" />
-              </>
-            )}
-          </svg>
-        </div>
-      </div>
 
-      <div ref={menuContainerRef} className={styles.menuContainer}>
-        <div className={styles.menuContent}>
-          <nav className={styles.menuNav}>
-            <ul className={styles.menuList}>
-              <li ref={addToMenuRefs} className={styles.menuItem} onClick={toggleMenu}>
-                <a href="#home" title="Home">
-                  <span className={styles.menuIcon}>🏠</span>
-                  <span className={styles.menuText}>Accueil</span>
-                </a>
-              </li>
-              <li ref={addToMenuRefs} className={styles.menuItem} onClick={toggleMenu}>
-                <a href="#about" title="A propos">
-                  <span className={styles.menuIcon}>👤</span>
-                  <span className={styles.menuText}>À propos</span>
-                </a>
-              </li>
-              <li ref={addToMenuRefs} className={styles.menuItem} onClick={toggleMenu}>
-                <a href="#projects" title="Projets">
-                  <span className={styles.menuIcon}>🔨</span>
-                  <span className={styles.menuText}>Projets</span>
-                </a>
-              </li>
-              <li ref={addToMenuRefs} className={styles.menuItem} onClick={toggleMenu}>
-                <a href="#contact" title="Contact">
-                  <span className={styles.menuIcon}>✉️</span>
-                  <span className={styles.menuText}>Contact</span>
-                </a>
-              </li>
-              <li ref={addToMenuRefs} className={styles.menuItem} onClick={toggleMenu}>
-                <button
-                  onClick={user ? handleLogout : handleLogin}
-                  className={styles.menuText}>
-                  {user ? `Déconnexion (${user.user_metadata.full_name})` : "Connexion avec Google"}
-                </button>
-              </li>
-            </ul>
-          </nav>
+        <a href={t.switchLanguage.href} hrefLang={t.switchLanguage.lang} lang={t.switchLanguage.lang} className={styles.language} data-menu-social>
+          {t.switchLanguage.label}
+        </a>
+      </nav>
 
-          <div className={styles.menuSeparator}></div>
-
-          <div className={styles.socialContainer}>
-            <a
-              ref={addToSocialRefs}
-              href="https://github.com/Luxsss"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.socialLink}
-              title="GitHub"
-            >
-              <i className="fa-brands fa-github fa-lg"></i>
-            </a>
-            <a
-              ref={addToSocialRefs}
-              href="https://www.linkedin.com/in/alexs-brun/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.socialLink}
-              title="LinkedIn"
-            >
-              <i className="fa-brands fa-linkedin-in fa-lg"></i>
-            </a>
-            <a
-              ref={addToSocialRefs}
-              href="mailto:alexis1.brun@epitech.eu"
-              className={styles.socialLink}
-              title="Email"
-            >
-              <i className="fa-solid fa-envelope fa-lg"></i>
-            </a>
-            <a
-              ref={addToSocialRefs}
-              href="/download/CvAlexisBrunCom.pdf"
-              target="_blank"
-              className={styles.socialLink}
-              title="CV"
-              data-testid="cv-menu"
-              rel="noreferrer"
-              download
-            >
-              CV
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <a
-        ref={buttonCvRefs}
-        href="/download/CvAlexisBrunCom.pdf"
-        target="_blank"
-        className={styles.buttonCV}
-        title="CV"
-        data-testid="cv-button"
-        rel="noreferrer"
-        download
-      >
+      <a href={CV_PATH} className={styles.cvButton} aria-label={t.cv} data-testid="cv-button" download>
         CV
       </a>
     </>

@@ -1,37 +1,25 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import AboutMe from './index';
-import gsap from 'gsap';
-
-jest.mock('gsap', () => ({
-  registerPlugin: jest.fn(),
-  to: jest.fn(),
-  set: jest.fn(),
-}));
+import { fr } from '@/content/fr';
 
 describe('AboutMe component', () => {
-  test("Test: vérification que le container principal contient l'id 'about'", () => {
-    const { container } = render(<AboutMe />);
-    const aboutMeContainer = container.querySelector('#about');
-    expect(aboutMeContainer).toBeInTheDocument();
+  test("rend la section avec l'id 'about' et son titre", () => {
+    const { container } = render(<AboutMe t={fr.about} />);
+    expect(container.querySelector('section#about')).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 2, name: 'Qui suis-je ?' })).toBeInTheDocument();
   });
 
-  test('Test: affiche le titre "Qui suis-je ?"', () => {
-    render(<AboutMe />);
-    expect(screen.getByText("Qui suis-je ?")).toBeInTheDocument();
+  test('garde le texte dans un seul paragraphe lisible', () => {
+    render(<AboutMe t={fr.about} />);
+    const text = screen.getByText(/en construisant le jeu\.$/);
+    expect(text.tagName).toBe('P');
   });
 
-  test('Test: découpe la phrase en plusieurs paragraphes', () => {
-    const { container } = render(<AboutMe />);
-    const paragraphs = container.querySelectorAll('#about p');
-    expect(paragraphs.length).toBeGreaterThan(5);
-    expect(screen.getByText((content, element) =>
-      element?.tagName.toLowerCase() === 'p' && content.includes("Tout")
-    )).toBeInTheDocument();
-  });
-
-  test('Test: appelle gsap.registerPlugin lors du montage', () => {
-    render(<AboutMe />);
-    expect(gsap.registerPlugin).toHaveBeenCalled();
+  test('affiche le bloc « En ce moment »', () => {
+    render(<AboutMe t={fr.about} />);
+    const now = screen.getByRole('complementary', { name: 'En ce moment' });
+    expect(within(now).getByText('Je bosse sur')).toBeInTheDocument();
+    expect(within(now).getByText('J’attends')).toBeInTheDocument();
   });
 });

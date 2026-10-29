@@ -7,19 +7,17 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest"
+    "test": "jest",
+    "prebuild": "node scripts/check-content.mjs"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.49.1",
-    "gsap": "^3.12.7",
-    "locomotive-scroll": "^5.0.0-beta.21",
+    "@gsap/react": "^2.1.2",
+    "gsap": "^3.15.0",
     "next": "15.1.11",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.26.4",
-    "@babel/preset-react": "^7.26.3",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
     "@types/jest": "^29.5.14",

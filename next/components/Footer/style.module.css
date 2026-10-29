@@ -1,52 +1,149 @@
-.listLink {
-  font-size: 20px;
+/* Sticky reveal: the footer is pinned under the page and uncovered as the content scrolls away. */
+
+.reveal {
+  position: relative;
+  height: var(--footer-h);
+  clip-path: polygon(0% 0, 100% 0%, 100% 100%, 0 100%);
 }
 
-.footer {
-  color: #878787;
-  margin-bottom: 15px;
+.revealTrack {
+  position: relative;
+  top: -100vh;
+  height: calc(100vh + var(--footer-h));
+}
+
+.revealSticky {
+  position: sticky;
+  top: calc(100vh - var(--footer-h));
+  height: var(--footer-h);
+}
+
+/* Content */
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: clamp(32px, 6vh, 56px) var(--gutter) clamp(20px, 3vh, 32px);
+  background-color: var(--ink);
+  color: var(--on-ink);
+  overflow: hidden;
+}
+
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.label {
+  margin-bottom: 12px;
+  font-size: 0.875rem;
+  color: var(--on-ink-muted);
+}
+
+.navList {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 10px 32px;
+  font-size: clamp(1rem, 0.9rem + 0.4vw, 1.25rem);
+}
+
+.navList a:hover,
+.language:hover,
+.backToTop:hover {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.socials {
+  display: flex;
+  gap: 12px;
 }
 
 .socialLink {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
-  color: #edebe9;
-  background-color: rgba(237, 235, 233, 0.05);
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
+  background-color: rgba(237, 235, 233, 0.06);
+  color: var(--on-ink);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 .socialLink:hover {
-  background-color: rgba(237, 235, 233, 0.15);
+  background-color: rgba(237, 235, 233, 0.16);
   transform: translateY(-3px);
 }
 
-@media screen and (max-width: 425px) {
-  .footer {
-    margin-bottom: 10px;
-    font-size: 12px;
-  }
+.language {
+  margin-top: 16px;
+  font-size: 0.9375rem;
+  color: var(--on-ink-muted);
+}
 
-  .footerContainer {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 20px;
-    width: 100%;
+/* The name, set as large as the page allows. */
+.wordmark {
+  margin: 0 -0.04em;
+  font-size: clamp(3.5rem, 15.5vw, 16rem);
+  font-weight: 600;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  white-space: nowrap;
+  color: var(--on-ink);
+}
+
+.bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px 32px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(237, 235, 233, 0.12);
+  font-size: 0.9375rem;
+}
+
+.bottom .label {
+  margin: 0 8px 0 0;
+}
+
+.backToTop {
+  color: var(--on-ink);
+}
+
+/* Leaves room for the floating CV button, which sits bottom-right on small screens. */
+@media (max-width: 768px) {
+  .content {
+    padding-bottom: 96px;
   }
 }
 
-@media screen and (max-width: 375px) {
-  .footer {
-    font-size: 12px;
+@media (max-width: 600px) {
+  .navList {
+    grid-template-columns: repeat(2, auto);
+  }
+
+  .side {
+    align-items: flex-start;
   }
 }
 
-@media screen and (max-width: 320px) {
-  .footer {
-    font-size: 11px;
-    margin-bottom: 8px;
+@media (prefers-reduced-motion: reduce) {
+  .socialLink {
+    transition: none;
   }
 }

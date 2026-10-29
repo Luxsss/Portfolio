@@ -1,49 +1,33 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Header from './index';
-import gsap from 'gsap';
-
-jest.mock('gsap', () => ({
-  registerPlugin: jest.fn(),
-  to: jest.fn(),
-  set: jest.fn(),
-}));
+import { fr } from '@/content/fr';
+import { en } from '@/content/en';
 
 describe('Header component', () => {
-  test("Test: vérification que le container principal contient l'id 'home'", () => {
-    const { container } = render(<Header />);
-    const headerContainer = container.querySelector('#home');
-    expect(headerContainer).toBeInTheDocument();
+  test("rend la section avec l'id 'home'", () => {
+    const { container } = render(<Header t={fr.hero} />);
+    expect(container.querySelector('section#home')).toBeInTheDocument();
   });
 
-  test("Test: affiche les textes 'Développeur' et 'Full-stack'", () => {
-    render(<Header />);
-    expect(screen.getByText("Développeur")).toBeInTheDocument();
-    expect(screen.getByText("Full-stack")).toBeInTheDocument();
+  test('expose un h1 avec le nom et le métier, dans chaque langue', () => {
+    const { unmount } = render(<Header t={fr.hero} />);
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Alexis Brun, Développeur Full-stack');
+    unmount();
+    render(<Header t={en.hero} />);
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Alexis Brun, Full-stack Developer');
   });
 
-  test("Test: affiche trois fois le texte 'Alexis Brun -' dans le slider", () => {
-    render(<Header />);
-    const sliderTexts = screen.getAllByText("Alexis Brun -");
-    expect(sliderTexts.length).toBe(3);
+  test("cache le marquee décoratif aux lecteurs d'écran", () => {
+    const { container } = render(<Header t={fr.hero} />);
+    const marquee = container.querySelector('[data-marquee]');
+    expect(marquee).toHaveAttribute('aria-hidden', 'true');
+    expect(marquee?.querySelectorAll('[data-marquee-group]')).toHaveLength(3);
   });
 
-  test("Test: affiche deux images avec l'attribut alt 'Picture'", () => {
-    render(<Header />);
-    const images = screen.getAllByAltText("Picture");
-    expect(images.length).toBe(2);
-  });
-
-  test("Test: appelle gsap.registerPlugin lors du montage", () => {
-    render(<Header />);
-    expect(gsap.registerPlugin).toHaveBeenCalled();
-  });
-
-  test("Test: appelle gsap.registerPlugin lors du montage", () => {
-    jest.mock('gsap', () => ({
-      registerPlugin: jest.fn(),
-      to: jest.fn(),
-      set: jest.fn(),
-    }));
+  test('décrit les deux photos', () => {
+    render(<Header t={fr.hero} />);
+    expect(screen.getByAltText(fr.hero.photoMainAlt)).toBeInTheDocument();
+    expect(screen.getByAltText(fr.hero.photoSmallAlt)).toBeInTheDocument();
   });
 });

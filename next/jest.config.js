@@ -7,9 +7,9 @@ module.exports = {
   setupFilesAfterEnv: ["<rootDir>/setupTests.ts"],
   moduleNameMapper: {
     "\\.(css|less|scss|sass)$": "identity-obj-proxy",
-    "^gsap/all$": "<rootDir>/__mocks__/gsapAllMock.js",
-    "^gsap/ScrollTrigger$": "<rootDir>/__mocks__/gsapAllMock.js"
+    "^@/lib/gsap$": "<rootDir>/__mocks__/libGsap.ts",
+    "^@/(.*)$": "<rootDir>/$1",
   },
-  transformIgnorePatterns: ["/node_modules/(?!(gsap)/)"],
-  testMatch: ["**/*.test.tsx", "**/*.test.ts"]
+  testMatch: ["**/*.test.tsx", "**/*.test.ts"],
+  testPathIgnorePatterns: ["/node_modules/", "/.next/"],
 };

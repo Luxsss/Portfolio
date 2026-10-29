@@ -1,46 +1,30 @@
-// components/Content/Content.test.tsx
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import Footer from './content';
+import { render, screen, within } from '@testing-library/react';
+import Content from './content';
+import { fr } from '@/content/fr';
 
-describe('Content component', () => {
+const renderFooter = () => render(<Content t={fr.footer} nav={fr.nav} />);
 
-  test('Test: affiche les textes de version', () => {
-    render(<Footer />);
-    expect(screen.getByText("VERSION")).toBeInTheDocument();
-    expect(screen.getByText("2025 © Edition")).toBeInTheDocument();
-  });
-
-  test('Test: affiche les textes de local time', () => {
-    render(<Footer />);
-    expect(screen.getByText("LOCAL TIME")).toBeInTheDocument();
-    expect(screen.getByText("23:00 PM GMT+2")).toBeInTheDocument();
+describe('Footer content', () => {
+  test("affiche l'édition de l'année en cours et l'heure de Paris", () => {
+    renderFooter();
+    expect(screen.getByText(`© ${new Date().getFullYear()} Alexis Brun`, { exact: false })).toBeInTheDocument();
+    expect(document.querySelector('time')?.textContent).toMatch(/^\d{2}:\d{2}/);
   });
 
-  test('Test: affiche le texte de "SOCIALS"', () => {
-    render(<Footer />);
-    expect(screen.getByText("SOCIALS")).toBeInTheDocument();
+  test('reprend la navigation des sections', () => {
+    renderFooter();
+    const nav = screen.getByRole('navigation', { name: 'Navigation' });
+    expect(within(nav).getAllByRole('link')).toHaveLength(fr.nav.links.length);
+    expect(screen.getByRole('link', { name: 'Retour en haut' })).toHaveAttribute('href', '#home');
   });
 
-  test('Test: affiche le lien de "GitHub"', () => {
-    render(<Footer />);
-    const githubButton = screen.getByTestId("button-GitHub");
-    expect(githubButton).toBeInTheDocument();
+  test('affiche les liens sociaux, le CV et la langue', () => {
+    renderFooter();
+    expect(screen.getByTestId('button-GitHub')).toHaveAttribute('href', 'https://github.com/Luxsss');
+    expect(screen.getByTestId('button-LinkedIn')).toHaveAttribute('rel', 'noopener noreferrer');
+    expect(screen.getByTestId('button-Email')).toHaveAttribute('href', 'mailto:alexsdev@outlook.fr');
+    expect(screen.getByTestId('button-CV')).toHaveAttribute('download');
+    expect(screen.getByRole('link', { name: 'English' })).toHaveAttribute('href', '/en');
   });
-  test('Test: affiche le lien de "LinkedIn"', () => {
-    render(<Footer />);
-    const linkedinButton = screen.getByTestId("button-LinkedIn");
-    expect(linkedinButton).toBeInTheDocument();
-  });
-  test('Test: affiche le lien de "Email"', () => {
-    render(<Footer />);
-    const emailButton = screen.getByTestId("button-Email");
-    expect(emailButton).toBeInTheDocument();
-  });
-  test('Test: affiche le lien de "CV"', () => {
-    render(<Footer />);
-    const cvButton = screen.getByTestId("button-CV");
-    expect(cvButton).toBeInTheDocument();
-  });
-
 });
